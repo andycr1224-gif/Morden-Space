@@ -665,6 +665,28 @@
       color: var(--gold);
       transform: rotate(90deg);
     }
+    .lightbox__prev,
+    .lightbox__next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      color: #fff;
+      font-size: 1.4rem;
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      z-index: 10;
+    }
+    .lightbox__prev { left: 24px; }
+    .lightbox__next { right: 24px; }
+    .lightbox__prev:hover,
+    .lightbox__next:hover { background: rgba(184,155,94,0.35); border-color: #B89B5E; }
   </style>
 </head>
 
@@ -722,7 +744,9 @@
   <!-- Lightbox para galería de fotos -->
   <div class="lightbox" id="lightbox" role="dialog" aria-label="Foto ampliada" aria-modal="true">
     <button class="lightbox__close" id="lightboxClose" aria-label="Cerrar">&times;</button>
+    <button class="lightbox__prev" id="lightboxPrev" aria-label="Anterior">&#8592;</button>
     <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+    <button class="lightbox__next" id="lightboxNext" aria-label="Siguiente">&#8594;</button>
   </div>
 
 
@@ -1161,16 +1185,28 @@
 
     /* ─── 5. LIGHTBOX DE GALERÍA ───────────────────────────────
        Abre la foto ampliada al hacer click en cualquier imagen
-       del grid de galería. Se cierra con click, botón × o Escape. */
+       del grid de galería. Navegación prev/next con botones y flechas del teclado. */
     const lightbox      = document.getElementById('lightbox');
     const lightboxImg   = document.getElementById('lightboxImg');
     const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev  = document.getElementById('lightboxPrev');
+    const lightboxNext  = document.getElementById('lightboxNext');
 
-    function openLightbox(src, alt) {
-      lightboxImg.src = src;
-      lightboxImg.alt = alt || '';
+    let galleryImages = [];
+    let currentIndex  = 0;
+
+    function getGalleryImages() {
+      return Array.from(document.querySelectorAll('.detail-gallery__photo img'));
+    }
+
+    function openLightbox(index) {
+      galleryImages = getGalleryImages();
+      currentIndex  = index;
+      lightboxImg.src = galleryImages[currentIndex].src;
+      lightboxImg.alt = galleryImages[currentIndex].alt || '';
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
+      updateNavButtons();
     }
 
     function closeLightbox() {
@@ -1178,10 +1214,31 @@
       document.body.style.overflow = '';
     }
 
+    function showImage(index) {
+      currentIndex = (index + galleryImages.length) % galleryImages.length;
+      lightboxImg.style.opacity = '0';
+      setTimeout(() => {
+        lightboxImg.src = galleryImages[currentIndex].src;
+        lightboxImg.alt = galleryImages[currentIndex].alt || '';
+        lightboxImg.style.opacity = '1';
+        updateNavButtons();
+      }, 150);
+    }
+
+    function updateNavButtons() {
+      lightboxPrev.style.display = galleryImages.length > 1 ? 'flex' : 'none';
+      lightboxNext.style.display = galleryImages.length > 1 ? 'flex' : 'none';
+    }
+
+    lightboxImg.style.transition = 'opacity 0.15s ease-out';
+
     /* Delegado: las fotos se renderizan dinámicamente */
     document.addEventListener('click', (e) => {
       const photo = e.target.closest('.detail-gallery__photo img');
-      if (photo) openLightbox(photo.src, photo.alt);
+      if (photo) {
+        const imgs = getGalleryImages();
+        openLightbox(imgs.indexOf(photo));
+      }
     });
 
     lightbox.addEventListener('click', (e) => {
@@ -1189,9 +1246,14 @@
     });
 
     lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentIndex - 1); });
+    lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); showImage(currentIndex + 1); });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape')      closeLightbox();
+      if (e.key === 'ArrowLeft')   showImage(currentIndex - 1);
+      if (e.key === 'ArrowRight')  showImage(currentIndex + 1);
     });
 
   </script>
