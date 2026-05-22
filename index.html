@@ -240,15 +240,14 @@
 
     /* Logo */
     .navbar__logo img {
-      height: 110px;
+      height: 100px;
       width: auto;
       transition: height 0.3s var(--ease-out);
     }
-    .navbar__logo .logo-white { display: block; }
+    .navbar__logo .logo-white { display: none; }
     .navbar__logo .logo-dark  { display: none; }
 
-    .navbar.scrolled .navbar__logo img { height: 80px; }
-    .navbar.scrolled .logo-white { display: none; }
+    .navbar.scrolled .navbar__logo img { height: 100px; }
     .navbar.scrolled .logo-dark  { display: block; }
 
     /* Links de navegación */
@@ -399,11 +398,20 @@
 
     .hero__carousel-slide.active { opacity: 1; }
 
+    @keyframes kenBurns {
+      from { transform: scale(1); }
+      to   { transform: scale(1.07); }
+    }
+
     .hero__carousel-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
+    }
+
+    .hero__carousel-slide.active img {
+      animation: kenBurns 6s ease-out forwards;
     }
 
     /* Overlay: gradiente más denso para proteger el texto del hero */
@@ -1000,7 +1008,9 @@
       height: auto;
       border-radius: 4px;
       box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+      transition: transform 0.9s var(--ease-out);
     }
+    .catalogo__mockup:hover img { transform: scale(1.03); }
 
     .catalogo__eyebrow {
       font-size: 11px;
@@ -1228,7 +1238,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.07);
     }
 
-    .footer__brand img { height: 200px; margin-bottom: 20px; }
+    .footer__brand img { height: 280px; margin-bottom: 20px; }
 
     .footer__tagline {
       font-family: var(--font-serif);
@@ -1442,21 +1452,21 @@
         <img
           src="Modern%20Space/Pagina%20Web/Carrusel%20automatico%20para%20header/Foto%202.png"
           alt="Espacio diseñado por Modern Space"
-          loading="lazy"
+          fetchpriority="high"
         />
       </div>
       <div class="hero__carousel-slide">
         <img
           src="Modern%20Space/Pagina%20Web/Carrusel%20automatico%20para%20header/Foto%203.png"
           alt="Interior premium — Modern Space"
-          loading="lazy"
+          fetchpriority="high"
         />
       </div>
       <div class="hero__carousel-slide">
         <img
           src="Modern%20Space/Pagina%20Web/Carrusel%20automatico%20para%20header/Foto%204.png"
           alt="Diseño de interiores — Modern Space"
-          loading="lazy"
+          fetchpriority="high"
         />
       </div>
     </div>
