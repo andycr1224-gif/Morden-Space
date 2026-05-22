@@ -240,12 +240,14 @@
 
     /* Logo */
     .navbar__logo img {
-      height: 160px;
+      height: 72px;
       width: auto;
+      transition: height 0.3s var(--ease-out);
     }
     .navbar__logo .logo-white { display: block; }
     .navbar__logo .logo-dark  { display: none; }
 
+    .navbar.scrolled .navbar__logo img { height: 48px; }
     .navbar.scrolled .logo-white { display: none; }
     .navbar.scrolled .logo-dark  { display: block; }
 
@@ -1226,7 +1228,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.07);
     }
 
-    .footer__brand img { height: 72px; margin-bottom: 20px; }
+    .footer__brand img { height: 120px; margin-bottom: 20px; }
 
     .footer__tagline {
       font-family: var(--font-serif);
