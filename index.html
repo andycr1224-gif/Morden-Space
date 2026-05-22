@@ -1,0 +1,2461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Space — Diseño que acompaña</title>
+  <meta name="description" content="Modern Space · Baño · Cocina · Hogar. Diseñamos con intención, construimos con detalle. Proyectos de diseño de interiores en Costa Rica." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="Modern%20Space/Pagina%20Web/Logos%20sin%20fondo/Letras%20negras.png" />
+
+  <!-- Open Graph (para WhatsApp, Facebook, etc.) -->
+  <meta property="og:title"       content="Modern Space — Diseño que acompaña" />
+  <meta property="og:description" content="Baño · Cocina · Hogar. Diseñamos con intención, construimos con detalle." />
+  <meta property="og:type"        content="website" />
+  <meta property="og:image"       content="Modern%20Space/Propuesta%20Catalogo%20Modern%20Space/4.png" />
+  <meta property="og:locale"      content="es_CR" />
+
+  <!-- ============================================================
+       FUENTES — Google Fonts
+       Playfair Display: títulos grandes (italic y normal)
+       Inter: navegación, párrafos, labels, botones
+  ============================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       TABLA DE CONTENIDOS — CSS
+       1.  Variables (colores, tipografía, espaciado)
+       2.  Reset y base
+       3.  Utilidades
+       4.  Animaciones de entrada (scroll reveal)
+       5.  NAVBAR
+       6.  HERO
+       7.  FILOSOFÍA
+       8.  SERVICIOS
+       9.  PROYECTOS
+       10. PROCESO
+       11. CATÁLOGO CTA
+       12. CONTACTO
+       13. FOOTER
+       14. SCROLL TOP BUTTON
+       15. RESPONSIVE (tablet 1024px, móvil 768px, pequeño 480px)
+    ============================================================ */
+
+
+    /* ─── 1. VARIABLES ───────────────────────────────────────── */
+    :root {
+      /* Paleta de marca (extraída del catálogo 2026) */
+      --cream:        #F2EDE0;   /* fondo claro principal */
+      --cream-dark:   #E5DDD0;   /* fondo claro secundario */
+      --gold:         #B89B5E;   /* acento dorado (números, bordes, detalles) */
+      --gold-light:   #D4B97A;   /* dorado hover */
+      --dark:         #1C1C1C;   /* fondos oscuros, texto fuerte */
+      --dark-mid:     #2A2A2A;   /* cards oscuras */
+      --charcoal:     #3D3D3D;   /* texto secundario oscuro */
+      --text-body:    #4A4545;   /* párrafos sobre fondo claro */
+      --text-muted:   #8A8075;   /* labels, metadatos */
+      --white:        #FFFFFF;
+
+      /* Tipografía */
+      --font-serif:   'Playfair Display', Georgia, serif;   /* titulos */
+      --font-sans:    'Inter', system-ui, sans-serif;       /* todo lo demás */
+
+      /* Espaciado de secciones */
+      --section-v:    120px;
+
+      /* Transiciones */
+      --t-fast:      0.18s ease-out;
+      --t-base:      0.26s ease-out;
+      --t-slow:      0.60s cubic-bezier(0.23, 1, 0.32, 1);
+      --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+      --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+
+    /* ─── 2. RESET Y BASE ────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--cream);
+      color: var(--text-body);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; height: auto; }
+
+    a { text-decoration: none; color: inherit; }
+
+    ul, ol { list-style: none; }
+
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+
+    /* ─── 3. UTILIDADES ──────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* Etiqueta de sección pequeña (FILOSOFÍA, SERVICIOS, etc.) */
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    /* Título de sección en serif */
+    .section-title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+
+    .section-title.light { color: var(--white); }
+
+    /* Párrafo de sección */
+    .section-body {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text-body);
+      max-width: 560px;
+    }
+
+    /* Botón primario (relleno oscuro) */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--dark);
+      padding: 16px 36px;
+      transition: background var(--t-fast), color var(--t-fast), transform 160ms ease-out;
+    }
+    .btn-primary:hover  { background: var(--gold); }
+    .btn-primary:active { transform: scale(0.97); }
+
+    /* Botón outline versión blanca (sobre fondos oscuros) */
+    .btn-outline-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.6);
+      padding: 15px 35px;
+      transition: background var(--t-fast), border-color var(--t-fast), transform 160ms ease-out;
+    }
+    .btn-outline-white:hover  { background: rgba(255,255,255,0.1); border-color: var(--white); }
+    .btn-outline-white:active { transform: scale(0.97); }
+
+
+    /* ─── 4. ANIMACIONES DE ENTRADA ─────────────────────────── */
+    /* Los elementos con estas clases entran cuando el IntersectionObserver
+       los detecta en viewport. Ver JS sección "Scroll Reveal". */
+    .reveal,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale {
+      opacity: 0;
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+    .reveal          { transform: translateY(28px); }
+    .reveal-left     { transform: translateX(-36px); }
+    .reveal-right    { transform: translateX(36px); }
+    .reveal-scale    { transform: scale(0.96); }
+
+    .reveal.visible,
+    .reveal-left.visible,
+    .reveal-right.visible,
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Delay escalonado para grupos de cards */
+    .stagger-1 { transition-delay: 0.05s; }
+    .stagger-2 { transition-delay: 0.15s; }
+    .stagger-3 { transition-delay: 0.25s; }
+    .stagger-4 { transition-delay: 0.35s; }
+    .stagger-5 { transition-delay: 0.45s; }
+    .stagger-6 { transition-delay: 0.55s; }
+    .stagger-7 { transition-delay: 0.65s; }
+    .stagger-8 { transition-delay: 0.75s; }
+
+
+    /* ─── 5. NAVBAR ──────────────────────────────────────────── */
+    /* Cambia de transparente a sólido al hacer scroll.
+       Logo blanco en hero, negro cuando navbar es sólida. */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 28px 0;
+      transition: background 0.3s var(--ease-out), padding 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), backdrop-filter 0.3s;
+    }
+
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.93);
+      padding: 18px 0;
+      box-shadow: 0 1px 32px rgba(0,0,0,0.09);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Logo */
+    .navbar__logo img {
+      height: 160px;
+      width: auto;
+    }
+    .navbar__logo .logo-white { display: block; }
+    .navbar__logo .logo-dark  { display: none; }
+
+    .navbar.scrolled .logo-white { display: none; }
+    .navbar.scrolled .logo-dark  { display: block; }
+
+    /* Links de navegación */
+    .navbar__links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .navbar__links a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      position: relative;
+      transition: color var(--t-fast);
+    }
+
+    .navbar.scrolled .navbar__links a { color: var(--charcoal); }
+
+    /* Underline animado en hover */
+    .navbar__links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--gold);
+      transition: width var(--t-base);
+    }
+    .navbar__links a:hover::after,
+    .navbar__links a.active::after { width: 100%; }
+
+    .navbar__links a:hover { color: var(--white); }
+    .navbar.scrolled .navbar__links a:hover { color: var(--dark); }
+
+    /* CTA en navbar */
+    .navbar__cta {
+      font-size: 11px !important;
+      font-weight: 600 !important;
+      color: var(--white) !important;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      padding: 9px 22px;
+      transition: background var(--t-fast), border-color var(--t-fast), transform 160ms ease-out !important;
+    }
+    .navbar__cta::after { display: none !important; }
+    .navbar__cta:hover  { background: rgba(255,255,255,0.12) !important; border-color: rgba(255,255,255,0.9); }
+    .navbar__cta:active { transform: scale(0.96) !important; }
+    .navbar.scrolled .navbar__cta { color: var(--dark) !important; border-color: var(--dark); }
+    .navbar.scrolled .navbar__cta:hover { background: var(--dark) !important; color: var(--white) !important; }
+
+    /* Botón hamburguesa — solo visible en móvil */
+    .navbar__burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 34px;
+      height: 34px;
+      background: transparent;
+    }
+    .navbar__burger span {
+      display: block;
+      height: 1.5px;
+      background: var(--white);
+      transition: transform var(--t-base), opacity var(--t-fast), background var(--t-fast);
+      transform-origin: center;
+    }
+    .navbar.scrolled .navbar__burger span { background: var(--dark); }
+
+    .navbar__burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .navbar__burger.open span:nth-child(2) { opacity: 0; }
+    .navbar__burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Menú móvil (drawer) */
+    .navbar__mobile {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--dark);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.32s var(--ease-out), visibility 0.32s;
+    }
+    .navbar__mobile.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+    }
+    .navbar__mobile a {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 2rem;
+      color: var(--white);
+      opacity: 0;
+      transform: translateY(18px);
+      transition: color var(--t-fast), opacity 0.38s var(--ease-out), transform 0.38s var(--ease-out);
+    }
+    .navbar__mobile.open a {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .navbar__mobile.open a:nth-child(1) { transition-delay: 0.06s; }
+    .navbar__mobile.open a:nth-child(2) { transition-delay: 0.12s; }
+    .navbar__mobile.open a:nth-child(3) { transition-delay: 0.18s; }
+    .navbar__mobile.open a:nth-child(4) { transition-delay: 0.24s; }
+    .navbar__mobile.open a:nth-child(5) { transition-delay: 0.30s; }
+    .navbar__mobile a:hover { color: var(--gold); }
+
+
+    /* ─── 6. HERO ────────────────────────────────────────────── */
+    /* Fondo: carrusel automático de 3 fotos, crossfade cada 5s.
+       Parallax sobre el contenedor .hero__carousel.             */
+    #inicio {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 64px;
+    }
+
+    .hero__carousel {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 110%;
+      top: -5%;
+      will-change: transform;
+      overflow: hidden;
+    }
+
+    .hero__carousel-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .hero__carousel-slide.active { opacity: 1; }
+
+    .hero__carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Overlay: gradiente más denso para proteger el texto del hero */
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(10, 10, 10, 0.96) 0%,
+        rgba(10, 10, 10, 0.75) 30%,
+        rgba(10, 10, 10, 0.40) 60%,
+        rgba(10, 10, 10, 0.15) 100%
+      );
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+    }
+
+    .hero__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+    .hero__tag::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero__title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 24px;
+      text-shadow: 0 2px 28px rgba(0,0,0,0.6);
+    }
+
+    .hero__sub {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.85);
+      max-width: 480px;
+      margin-bottom: 44px;
+      text-shadow: 0 1px 16px rgba(0,0,0,0.5);
+    }
+
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* Franja inferior con categorías */
+    .hero__categories {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      z-index: 2;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .hero__cat-item {
+      display: flex;
+      align-items: center;
+      padding: 20px 36px;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(8px);
+      border-left: 1px solid rgba(255,255,255,0.1);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      cursor: pointer;
+      transition: background var(--t-fast), color var(--t-fast);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .hero__cat-item:hover {
+        background: rgba(184,155,94,0.2);
+        color: var(--gold-light);
+      }
+    }
+    .hero__cat-item:active {
+      background: rgba(184,155,94,0.3);
+    }
+
+    /* Hero — entrada escalonada en carga */
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes heroFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .hero__title     { animation: heroFadeUp 0.9s var(--ease-out) 0.12s both; }
+    .hero__sub       { animation: heroFadeUp 0.8s var(--ease-out) 0.42s both; }
+    .hero__actions   { animation: heroFadeUp 0.75s var(--ease-out) 0.58s both; }
+    .hero__categories { animation: heroFadeUp 0.65s var(--ease-out) 0.72s both; }
+
+    /* Indicador de scroll */
+    .hero__scroll {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.45);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      animation: heroFadeIn 0.6s ease-out 1.0s both, bounce 2.4s ease-in-out 1.6s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(8px); }
+    }
+
+
+    /* ─── 7. FILOSOFÍA ───────────────────────────────────────── */
+    /* Fondo crema con los 3 pilares del catálogo (pg. 3).
+       Números grandes dorados + borde punteado decorativo.      */
+    #filosofia {
+      padding: var(--section-v) 0;
+      background: var(--cream);
+      position: relative;
+    }
+
+    /* Borde punteado decorativo (referencia visual del catálogo) */
+    #filosofia::before {
+      content: '';
+      position: absolute;
+      top: 40px; left: 40px; right: 40px; bottom: 40px;
+      border: 1px dashed rgba(184,155,94,0.25);
+      pointer-events: none;
+    }
+
+    .filosofia__intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 80px;
+    }
+
+    .filosofia__quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.4;
+      margin-bottom: 24px;
+    }
+
+    .filosofia__pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid rgba(184,155,94,0.3);
+    }
+
+    .pillar {
+      padding: 60px 48px;
+      border-right: 1px solid rgba(184,155,94,0.2);
+      transition: background 0.3s var(--ease-out);
+    }
+    .pillar:last-child { border-right: none; }
+    @media (hover: hover) and (pointer: fine) {
+      .pillar:hover { background: rgba(255,255,255,0.55); }
+    }
+
+    /* Número grande dorado (estilo catálogo pg. 3) */
+    .pillar__number {
+      font-family: var(--font-serif);
+      font-size: 5rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .pillar__title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 14px;
+    }
+
+    .pillar__text {
+      font-size: 0.925rem;
+      line-height: 1.75;
+      color: var(--text-body);
+    }
+
+    /* Banda de estadísticas — fondo oscuro */
+    .stats-band {
+      background: var(--dark);
+      padding: 60px 0;
+    }
+
+    .stats-band__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      text-align: center;
+    }
+
+    .stat-item {
+      padding: 20px 30px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-item__number {
+      font-family: var(--font-serif);
+      font-size: 3.2rem;
+      font-weight: 400;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .stat-item__label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+
+    /* ─── 8. SERVICIOS ───────────────────────────────────────── */
+    /* 6 cards sobre fondo crema oscuro.
+       Hover: línea dorada inferior se expande de izquierda a derecha. */
+    #servicios {
+      padding: var(--section-v) 0;
+      background: var(--cream-dark);
+    }
+
+    .servicios__header { margin-bottom: 64px; }
+
+    .servicios__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .servicio-card {
+      background: var(--cream);
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+      transition: background var(--t-base);
+    }
+
+    /* Línea dorada inferior que se expande en hover */
+    .servicio-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.55s var(--ease-out);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .servicio-card:hover::after { width: 100%; }
+      .servicio-card:hover { background: var(--white); }
+    }
+
+    .servicio-card__icon {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 28px;
+      color: var(--gold);
+    }
+
+    /* Número decorativo difuminado en la esquina */
+    .servicio-card__number {
+      position: absolute;
+      top: 24px; right: 28px;
+      font-family: var(--font-serif);
+      font-size: 4rem;
+      font-weight: 600;
+      color: rgba(184,155,94,0.1);
+      line-height: 1;
+      user-select: none;
+    }
+
+    .servicio-card__title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+
+    .servicio-card__text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-body);
+    }
+
+
+    /* ─── 9. PROYECTOS ───────────────────────────────────────── */
+    /* Grid asimétrico con fotos reales del catálogo 2026.
+       Para agregar proyectos: ver comentario en el HTML.        */
+    #proyectos {
+      padding: var(--section-v) 0;
+      background: var(--dark);
+    }
+
+    .proyectos__header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 60px;
+      gap: 24px;
+    }
+
+    .proyectos__header .section-label { color: rgba(184,155,94,0.8); }
+    .proyectos__header .section-title { color: var(--white); margin-bottom: 0; }
+
+    .proyectos__intro {
+      max-width: 340px;
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.5);
+      text-align: right;
+    }
+
+    /* Grid — col 1 grande (span 2), el resto regulares */
+    .proyectos__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 380px 280px;
+      gap: 4px;
+    }
+
+    .proyecto-card--featured {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .proyecto-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .proyecto-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.9s var(--ease-out);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .proyecto-card:hover img { transform: scale(1.06); }
+    }
+
+    /* Overlay que aparece en hover desde abajo */
+    .proyecto-card__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(10,10,10,0.92) 0%,
+        rgba(10,10,10,0.4) 50%,
+        transparent 100%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 32px;
+      transform: translateY(48px);
+      opacity: 0;
+      transition: opacity 0.24s var(--ease-out), transform 0.24s var(--ease-out);
+    }
+    .proyecto-card:hover .proyecto-card__overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Etiqueta de categoría siempre visible */
+    .proyecto-card__tag {
+      position: absolute;
+      top: 20px; left: 20px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(10,10,10,0.6);
+      backdrop-filter: blur(4px);
+      padding: 6px 12px;
+    }
+
+    .proyecto-card__title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .proyecto-card--featured .proyecto-card__title { font-size: 2rem; }
+
+    .proyecto-card__meta {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .proyecto-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      transition: gap var(--t-fast);
+    }
+    .proyecto-card:hover .proyecto-card__link { gap: 14px; }
+
+
+    /* ─── 10. PROCESO ────────────────────────────────────────── */
+    /* 5 pasos verticales con línea y puntos dorados.
+       Basado en catálogo pg. 20.                                */
+    #proceso {
+      padding: var(--section-v) 0;
+      background: var(--cream);
+    }
+
+    .proceso__layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .proceso__steps {
+      position: relative;
+      padding-left: 24px;
+    }
+
+    /* Línea vertical conectora de los pasos */
+    .proceso__steps::before {
+      content: '';
+      position: absolute;
+      top: 24px; left: 0;
+      width: 1px;
+      height: calc(100% - 48px);
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+
+    .paso {
+      display: flex;
+      gap: 32px;
+      padding-bottom: 44px;
+      position: relative;
+    }
+    .paso:last-child { padding-bottom: 0; }
+
+    /* Punto dorado sobre la línea */
+    .paso::before {
+      content: '';
+      position: absolute;
+      left: -28px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--cream);
+      box-shadow: 0 0 0 3px rgba(184,155,94,0.25);
+    }
+
+    .paso__number {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 36px;
+    }
+
+    .paso__content { flex: 1; }
+
+    .paso__title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .paso__desc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-body);
+    }
+
+    /* Imagen con marco dorado desplazado */
+    .proceso__image { position: relative; overflow: hidden; }
+
+    .proceso__image img {
+      width: 100%;
+      height: auto;
+      object-fit: unset;
+      object-position: unset;
+      transition: transform 0.9s var(--ease-out);
+    }
+    .proceso__image:hover img { transform: scale(1.03); }
+
+    /* Marco decorativo dorado detrás de la imagen */
+    .proceso__image::before {
+      content: '';
+      position: absolute;
+      top: -20px; right: -20px;
+      width: 100%;
+      height: 100%;
+      border: 1.5px solid rgba(184,155,94,0.3);
+      z-index: -1;
+    }
+
+
+    /* ─── 11. CATÁLOGO CTA ────────────────────────────────────── */
+    /* Sección oscura para descargar el PDF del catálogo 2026.    */
+    #catalogo {
+      padding: 100px 0;
+      background: var(--dark-mid);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Elementos decorativos de fondo (círculos) */
+    #catalogo::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      border: 1px solid rgba(184,155,94,0.1);
+    }
+    #catalogo::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      border: 1px dashed rgba(184,155,94,0.08);
+    }
+
+    .catalogo__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .catalogo__mockup img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+
+    .catalogo__eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .catalogo__title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .catalogo__desc {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.55);
+      max-width: 480px;
+    }
+
+    .catalogo__action {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .catalogo__action .btn-primary { background: var(--gold); white-space: nowrap; }
+    .catalogo__action .btn-primary:hover { background: var(--gold-light); }
+
+    .catalogo__note {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.06em;
+    }
+
+
+    /* ─── 12. CONTACTO ───────────────────────────────────────── */
+    /* Fondo crema. 2 columnas: info + formulario.
+       IMPORTANTE: reemplazar datos de ejemplo con reales.       */
+    #contacto {
+      padding: var(--section-v) 0;
+      background: var(--cream);
+    }
+
+    .contacto__layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contacto__tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.4;
+      margin-bottom: 40px;
+    }
+
+    .contacto__info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .info-item__icon {
+      width: 40px;
+      height: 40px;
+      background: var(--cream-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold);
+    }
+
+    .info-item__label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .info-item__value {
+      font-size: 0.95rem;
+      color: var(--dark);
+    }
+    .info-item__value a { color: var(--dark); transition: color var(--t-fast); }
+    .info-item__value a:hover { color: var(--gold); }
+
+    /* Redes sociales */
+    .contacto__social { display: flex; gap: 14px; }
+
+    .social-link {
+      width: 42px;
+      height: 42px;
+      border: 1.5px solid rgba(184,155,94,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast), transform 160ms ease-out;
+    }
+    .social-link:hover  { background: var(--gold); border-color: var(--gold); color: var(--white); }
+    .social-link:active { transform: scale(0.92); }
+
+    /* Formulario */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--dark);
+      background: var(--white);
+      border: 1.5px solid rgba(184,155,94,0.2);
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color var(--t-fast);
+      resize: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(184, 155, 94, 0.12);
+      outline: none;
+    }
+
+    /* Estado de error */
+    .form-group.error input,
+    .form-group.error textarea { border-color: #C0392B; }
+
+    .form-group__error-msg {
+      font-size: 11px;
+      color: #C0392B;
+      margin-top: 5px;
+      display: none;
+    }
+    .form-group.error .form-group__error-msg { display: block; }
+
+    .form-group textarea { min-height: 140px; }
+
+    /* Mensaje de éxito al enviar */
+    .form__success {
+      display: none;
+      background: rgba(184,155,94,0.08);
+      border-left: 3px solid var(--gold);
+      padding: 20px 24px;
+      margin-top: 20px;
+    }
+    .form__success p { font-size: 0.9rem; color: var(--charcoal); line-height: 1.6; }
+    .form__success.visible { display: block; }
+
+    /* Botón WhatsApp */
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      padding: 14px 28px;
+      margin-top: 24px;
+      transition: background var(--t-fast), transform 160ms ease-out;
+    }
+    .whatsapp-btn:hover  { background: #1ebe5b; }
+    .whatsapp-btn:active { transform: scale(0.97); }
+
+
+    /* ─── 13. FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      padding: 80px 0 0;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .footer__brand img { height: 72px; margin-bottom: 20px; }
+
+    .footer__tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .footer__brand-text {
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer__col-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .footer__col ul { display: flex; flex-direction: column; gap: 12px; }
+
+    .footer__col a {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.45);
+      transition: color var(--t-fast);
+    }
+    .footer__col a:hover { color: var(--gold); }
+
+    .footer__bottom {
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer__copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .footer__cats {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+
+
+    /* ─── 14. SCROLL TOP BUTTON ──────────────────────────────── */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 36px;
+      right: 36px;
+      z-index: 900;
+      width: 48px;
+      height: 48px;
+      background: var(--gold);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.22s var(--ease-out), transform 0.22s var(--ease-out), background var(--t-fast);
+      pointer-events: none;
+    }
+    #scrollTopBtn.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    #scrollTopBtn:hover  { background: var(--dark); }
+    #scrollTopBtn:active { transform: scale(0.92); }
+
+
+    /* ─── 15. RESPONSIVE ──────────────────────────────────────── */
+
+    /* Tablet (≤1024px) */
+    @media (max-width: 1024px) {
+      :root { --section-v: 90px; }
+      .container { padding: 0 28px; }
+      .navbar__links { gap: 28px; }
+      .navbar__cta   { display: none; }
+      .servicios__grid { grid-template-columns: repeat(2, 1fr); }
+      .proyectos__grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .proyecto-card--featured {
+        grid-column: span 2;
+        grid-row: span 1;
+        height: 380px;
+      }
+      .proyecto-card { height: 280px; }
+      .proceso__layout { gap: 60px; }
+      .catalogo__inner { grid-template-columns: 1fr; }
+      .catalogo__mockup { display: none; }
+      .catalogo__action { align-items: flex-start; text-align: left; }
+      .contacto__layout { grid-template-columns: 1fr; gap: 60px; }
+      .footer__grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .stats-band__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Móvil (≤768px) */
+    @media (max-width: 768px) {
+      :root { --section-v: 72px; }
+      .container { padding: 0 20px; }
+      .navbar__links { display: none; }
+      .navbar__burger { display: flex; }
+      #filosofia::before { display: none; }
+      .filosofia__pillars { grid-template-columns: 1fr; }
+      .pillar {
+        border-right: none;
+        border-bottom: 1px solid rgba(184,155,94,0.2);
+        padding: 40px 24px;
+      }
+      .pillar:last-child { border-bottom: none; }
+      .stats-band__grid { grid-template-columns: repeat(2, 1fr); }
+      .servicios__grid { grid-template-columns: 1fr; }
+      .proyectos__header { flex-direction: column; align-items: flex-start; }
+      .proyectos__intro  { text-align: left; max-width: 100%; }
+      .proyectos__grid   { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .proyecto-card--featured { grid-column: span 1; height: 320px; }
+      .proyecto-card { height: 260px; }
+      .proceso__layout { grid-template-columns: 1fr; }
+      .proceso__image  { display: none; }
+      .hero__categories { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer__grid { grid-template-columns: 1fr; gap: 36px; }
+      .footer__bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .catalogo__inner { gap: 36px; }
+    }
+
+    /* Pequeño (≤480px) */
+    @media (max-width: 480px) {
+      .hero__title  { font-size: 2.2rem; }
+      .hero__actions { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       - Transparente sobre hero, sólida al scrollear
+       - Logo blanco → negro automático via CSS
+       - Hamburger en móvil abre el menú overlay
+  ============================================================ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="container">
+      <div class="navbar__inner">
+
+        <!-- Dos versiones del logo: blanca (hero) y oscura (navbar scrolled) -->
+        <a href="#inicio" class="navbar__logo" aria-label="Modern Space — inicio">
+          <img src="Modern%20Space/Pagina%20Web/Logos%20sin%20fondo/Letras%20blancas.png" alt="Modern Space" class="logo-white" />
+          <img src="Modern%20Space/Pagina%20Web/Logos%20sin%20fondo/Letras%20negras.png"  alt="Modern Space" class="logo-dark"  />
+        </a>
+
+        <!-- Links desktop -->
+        <ul class="navbar__links" role="list">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="portafolio.html">Proyectos</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#contacto" class="navbar__cta">Cotizar</a></li>
+        </ul>
+
+        <!-- Hamburger (solo móvil) -->
+        <button class="navbar__burger" id="burgerBtn" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menú overlay móvil -->
+  <div class="navbar__mobile" id="mobileMenu" role="dialog" aria-label="Menú de navegación">
+    <a href="#inicio"    onclick="closeMobileMenu()">Inicio</a>
+    <a href="#servicios" onclick="closeMobileMenu()">Servicios</a>
+    <a href="portafolio.html" onclick="closeMobileMenu()">Proyectos</a>
+    <a href="#proceso"   onclick="closeMobileMenu()">Proceso</a>
+    <a href="#contacto"  onclick="closeMobileMenu()">Contacto</a>
+  </div>
+
+
+  <!-- ============================================================
+       HERO (#inicio)
+       Carrusel: 3 fotos de alta calidad, crossfade cada 5s.
+       Parallax aplicado via JS sobre .hero__carousel
+  ============================================================ -->
+  <section id="inicio" aria-label="Portada Modern Space">
+
+    <div class="hero__carousel" id="heroCarousel">
+      <div class="hero__carousel-slide active">
+        <img
+          src="Modern%20Space/Pagina%20Web/Carrusel%20automatico%20para%20header/Foto%201.png"
+          alt="Proyecto de diseño de interiores — Modern Space"
+          fetchpriority="high"
+        />
+      </div>
+      <div class="hero__carousel-slide">
+        <img
+          src="Modern%20Space/Pagina%20Web/Carrusel%20automatico%20para%20header/Foto%202.png"
+          alt="Espacio diseñado por Modern Space"
+          loading="lazy"
+        />
+      </div>
+      <div class="hero__carousel-slide">
+        <img
+          src="Modern%20Space/Pagina%20Web/Carrusel%20automatico%20para%20header/Foto%203.png"
+          alt="Interior premium — Modern Space"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <div class="hero__overlay"></div>
+
+    <div class="container">
+      <div class="hero__content">
+
+        <h1 class="hero__title">
+          Transformamos tu espacio<br>
+          en algo que te representa.
+        </h1>
+
+        <p class="hero__sub">
+          Cocinas, baños y espacios del hogar diseñados a tu medida.<br>
+          Materiales de primera y un proceso acompañado en cada etapa.
+        </p>
+
+        <div class="hero__actions">
+          <a href="#proyectos" class="btn-primary">
+            Ver Proyectos
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="#contacto" class="btn-outline-white">Solicitar Cotización</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Categorías flotantes esquina inferior derecha -->
+    <nav class="hero__categories" aria-label="Explorar por categoría">
+      <a href="portafolio.html?categoria=cocina" class="hero__cat-item">Cocina</a>
+      <a href="portafolio.html?categoria=bano"   class="hero__cat-item">Baño</a>
+      <a href="portafolio.html?categoria=hogar"  class="hero__cat-item">Hogar</a>
+    </nav>
+
+    <!-- Indicador de scroll -->
+    <div class="hero__scroll" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       FILOSOFÍA
+       3 pilares del catálogo (pg. 3).
+       Números grandes dorados, borde punteado decorativo.
+  ============================================================ -->
+  <section id="filosofia" aria-labelledby="filosofia-heading">
+    <div class="container">
+
+      <div class="filosofia__intro reveal">
+        <span class="section-label">Filosofía</span>
+        <!-- Copy exacto del catálogo pg. 3 -->
+        <blockquote class="filosofia__quote" id="filosofia-heading">
+          "Diseñamos con intención.<br>Construimos con detalle."
+        </blockquote>
+        <p class="section-body" style="text-align:center; margin: 0 auto;">
+          En Modern Space acompañamos a quienes quieren transformar su espacio
+          en algo que realmente los represente.
+        </p>
+      </div>
+
+      <div class="filosofia__pillars">
+
+        <div class="pillar reveal stagger-1">
+          <div class="pillar__number" aria-hidden="true">01</div>
+          <h3 class="pillar__title">Diseño a tu medida</h3>
+          <p class="pillar__text">
+            Cada espacio se piensa alrededor de quien lo va a vivir.
+            No hay soluciones genéricas, solo proyectos hechos para ti.
+          </p>
+        </div>
+
+        <div class="pillar reveal stagger-2">
+          <div class="pillar__number" aria-hidden="true">02</div>
+          <h3 class="pillar__title">Calidad permanente</h3>
+          <p class="pillar__text">
+            Trabajamos con materiales seleccionados y procesos cuidados.
+            Lo que construimos está pensado para acompañarte por años.
+          </p>
+        </div>
+
+        <div class="pillar reveal stagger-3">
+          <div class="pillar__number" aria-hidden="true">03</div>
+          <h3 class="pillar__title">Acompañamiento completo</h3>
+          <p class="pillar__text">
+            Desde la primera idea hasta el último detalle.
+            Caminamos contigo en cada etapa del proyecto, sin apuros y sin atajos.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ============================================================
+       SERVICIOS (#servicios)
+       6 cards: Cocina, Baño, Hogar, Clósets, Escaleras, Puertas.
+       Hover: línea dorada crece desde la base de la card.
+  ============================================================ -->
+  <section id="servicios" aria-labelledby="servicios-heading">
+    <div class="container">
+
+      <div class="servicios__header reveal">
+        <span class="section-label">Lo que hacemos</span>
+        <h2 class="section-title" id="servicios-heading">
+          Cada espacio,<br>una solución a tu medida.
+        </h2>
+      </div>
+
+      <div class="servicios__grid">
+
+        <!-- Servicio 1: Cocinas -->
+        <div class="servicio-card reveal stagger-1">
+          <div class="servicio-card__number" aria-hidden="true">01</div>
+          <svg class="servicio-card__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="4" y="10" width="36" height="24" rx="1"/>
+            <line x1="4" y1="22" x2="40" y2="22"/>
+            <circle cx="12" cy="16" r="2"/><circle cx="22" cy="16" r="2"/><circle cx="32" cy="16" r="2"/>
+            <rect x="10" y="25" width="10" height="9" rx="0.5"/>
+            <rect x="24" y="25" width="10" height="9" rx="0.5"/>
+          </svg>
+          <h3 class="servicio-card__title">Diseño de Cocinas</h3>
+          <p class="servicio-card__text">
+            Cocinas funcionales y elegantes diseñadas para tu estilo de vida.
+            Gabinetes a medida, encimeras, islas y soluciones de almacenamiento.
+          </p>
+        </div>
+
+        <!-- Servicio 2: Baños -->
+        <div class="servicio-card reveal stagger-2">
+          <div class="servicio-card__number" aria-hidden="true">02</div>
+          <svg class="servicio-card__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M8 28h28a2 2 0 0 1-2 4H10a2 2 0 0 1-2-4z"/>
+            <line x1="22" y1="32" x2="22" y2="38"/>
+            <line x1="14" y1="38" x2="30" y2="38"/>
+            <path d="M8 28V14a3 3 0 0 1 6 0v2"/>
+            <line x1="8" y1="20" x2="36" y2="20"/>
+          </svg>
+          <h3 class="servicio-card__title">Baños Personalizados</h3>
+          <p class="servicio-card__text">
+            Vanitorios flotantes, cabinas de ducha, azulejo y accesorios.
+            Espacios que combinan funcionalidad y estética premium.
+          </p>
+        </div>
+
+        <!-- Servicio 3: Hogar -->
+        <div class="servicio-card reveal stagger-3">
+          <div class="servicio-card__number" aria-hidden="true">03</div>
+          <svg class="servicio-card__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M6 22L22 8l16 14"/>
+            <path d="M10 18v18h24V18"/>
+            <rect x="17" y="28" width="10" height="12"/>
+          </svg>
+          <h3 class="servicio-card__title">Diseño del Hogar</h3>
+          <p class="servicio-card__text">
+            Salas, comedores, dormitorios y espacios de trabajo.
+            Muebles integrales que unifican el ambiente y maximizan el espacio.
+          </p>
+        </div>
+
+        <!-- Servicio 4: Clósets -->
+        <div class="servicio-card reveal stagger-4">
+          <div class="servicio-card__number" aria-hidden="true">04</div>
+          <svg class="servicio-card__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="4" y="6" width="36" height="32" rx="1"/>
+            <line x1="22" y1="6" x2="22" y2="38"/>
+            <circle cx="17" cy="22" r="1.5"/><circle cx="27" cy="22" r="1.5"/>
+          </svg>
+          <h3 class="servicio-card__title">Clósets a Medida</h3>
+          <p class="servicio-card__text">
+            Sistemas modulares diseñados para tu espacio y contenido.
+            Con iluminación LED integrada y herrajes de cierre suave.
+          </p>
+        </div>
+
+        <!-- Servicio 5: Escaleras -->
+        <div class="servicio-card reveal stagger-5">
+          <div class="servicio-card__number" aria-hidden="true">05</div>
+          <svg class="servicio-card__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <polyline points="6,38 6,28 16,28 16,18 26,18 26,8 38,8"/>
+            <line x1="6" y1="38" x2="38" y2="38"/>
+          </svg>
+          <h3 class="servicio-card__title">Escaleras Flotantes</h3>
+          <p class="servicio-card__text">
+            Estructuras metálicas con peldaños en madera natural tratada.
+            Diseño que libera el espacio visual y deja pasar la luz.
+          </p>
+        </div>
+
+        <!-- Servicio 6: Puertas -->
+        <div class="servicio-card reveal stagger-6">
+          <div class="servicio-card__number" aria-hidden="true">06</div>
+          <svg class="servicio-card__icon" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="10" y="4" width="24" height="38" rx="1"/>
+            <circle cx="30" cy="23" r="2"/>
+            <line x1="10" y1="4" x2="10" y2="42"/>
+          </svg>
+          <h3 class="servicio-card__title">Puertas de Madera</h3>
+          <p class="servicio-card__text">
+            Puertas flush en melamina o madera maciza, sin molduras.
+            El primer detalle que define cómo se siente todo lo demás.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PROYECTOS (#proyectos)
+       Grid asimétrico con fotos reales del catálogo 2026.
+       Para AGREGAR un proyecto nuevo:
+         1. Copiar un bloque <article class="proyecto-card">
+         2. Actualizar el src de la imagen
+         3. Actualizar data-tag, proyecto-card__title y proyecto-card__meta
+       Para el proyecto DESTACADO usar además: proyecto-card--featured
+  ============================================================ -->
+  <section id="proyectos" aria-labelledby="proyectos-heading">
+    <div class="container">
+
+      <div class="proyectos__header">
+        <div>
+          <span class="section-label">Portafolio</span>
+          <h2 class="section-title" id="proyectos-heading">
+            Proyectos<br>que se sienten.
+          </h2>
+        </div>
+        <p class="proyectos__intro reveal-right">
+          Un recorrido por algunos de los espacios que hemos diseñado
+          junto a nuestros clientes.
+        </p>
+      </div>
+
+      <div class="proyectos__grid">
+
+        <!-- PROYECTO 1 — GRANDE (span 2 cols × 2 filas) -->
+        <article class="proyecto-card proyecto-card--featured reveal-scale stagger-1">
+          <img
+            src="Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Cocina%201/Concina%201.png"
+            alt="Cocina a medida con gabinetes premium — Modern Space"
+            loading="lazy"
+          />
+          <span class="proyecto-card__tag">Cocina</span>
+          <div class="proyecto-card__overlay">
+            <h3 class="proyecto-card__title">Funcional, elegante, tuya.</h3>
+            <p class="proyecto-card__meta">Cocina a medida &middot; 2025</p>
+            <a class="proyecto-card__link" href="proyecto.html?id=cocina-carrillos">
+              Ver proyecto
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- PROYECTO 2 — Escalera flotante -->
+        <article class="proyecto-card reveal-scale stagger-2">
+          <img
+            src="Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Escalera/Escalera.png"
+            alt="Escalera flotante en madera y acero — Modern Space"
+            loading="lazy"
+          />
+          <span class="proyecto-card__tag">Escalera</span>
+          <div class="proyecto-card__overlay">
+            <h3 class="proyecto-card__title">Donde el espacio sube de nivel.</h3>
+            <p class="proyecto-card__meta">Escalera flotante &middot; 2025</p>
+            <a class="proyecto-card__link" href="proyecto.html?id=escalera-ilios">
+              Ver proyecto
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- PROYECTO 3 — Casa habitación -->
+        <article class="proyecto-card reveal-scale stagger-3">
+          <img
+            src="Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Casa%20habitaci%C3%B3n%201/Casa%20habitaci%C3%B3n.png"
+            alt="Casa habitación diseñada a medida — Modern Space"
+            loading="lazy"
+          />
+          <span class="proyecto-card__tag">Hogar</span>
+          <div class="proyecto-card__overlay">
+            <h3 class="proyecto-card__title">Un hogar que se siente como tal.</h3>
+            <p class="proyecto-card__meta">Casa habitación &middot; 2025</p>
+            <a class="proyecto-card__link" href="proyecto.html?id=sala-grecia">
+              Ver proyecto
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- PROYECTO 4 — Clóset a medida -->
+        <article class="proyecto-card reveal-scale stagger-4">
+          <img
+            src="Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Closet%201/Closet%20in.png"
+            alt="Clóset a medida con herrajes premium — Modern Space"
+            loading="lazy"
+          />
+          <span class="proyecto-card__tag">Clóset</span>
+          <div class="proyecto-card__overlay">
+            <h3 class="proyecto-card__title">Orden que también se ve bien.</h3>
+            <p class="proyecto-card__meta">Clóset a medida &middot; 2025</p>
+            <a class="proyecto-card__link" href="proyecto.html?id=closet-poas">
+              Ver proyecto
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- PROYECTO 5 — Puerta Ilios -->
+        <article class="proyecto-card reveal-scale stagger-5">
+          <img
+            src="Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Puerta%201%20Ilios/Puerta%20Ilios.png"
+            alt="Puerta de diseño premium — Condominio Ilios, Modern Space"
+            loading="lazy"
+          />
+          <span class="proyecto-card__tag">Puerta</span>
+          <div class="proyecto-card__overlay">
+            <h3 class="proyecto-card__title">El primer detalle lo cambia todo.</h3>
+            <p class="proyecto-card__meta">Condominio Ilios, Escazú &middot; 2025</p>
+            <a class="proyecto-card__link" href="proyecto.html?id=puerta-ilios">
+              Ver proyecto
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- PROYECTO 6 — Cocina 2 -->
+        <article class="proyecto-card reveal-scale stagger-6">
+          <img
+            src="Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Cocina%202/Cocina%202.png"
+            alt="Cocina moderna diseñada a medida — Modern Space"
+            loading="lazy"
+          />
+          <span class="proyecto-card__tag">Cocina</span>
+          <div class="proyecto-card__overlay">
+            <h3 class="proyecto-card__title">Color y carácter en cada rincón.</h3>
+            <p class="proyecto-card__meta">Cocina moderna &middot; 2026</p>
+            <a class="proyecto-card__link" href="proyecto.html?id=cocina-quinta">
+              Ver proyecto
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- PROYECTO 7 — Baño 1 -->
+        <article class="proyecto-card reveal-scale stagger-7">
+          <img
+            src="Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Ba%C3%B1o%201/Ba%C3%B1o%201.png"
+            alt="Baño premium con diseño personalizado — Modern Space"
+            loading="lazy"
+          />
+          <span class="proyecto-card__tag">Baño</span>
+          <div class="proyecto-card__overlay">
+            <h3 class="proyecto-card__title">Tu baño, rediseñado.</h3>
+            <p class="proyecto-card__meta">Baño personalizado &middot; 2025</p>
+            <a class="proyecto-card__link" href="proyecto.html?id=bano">
+              Ver proyecto
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- PROYECTO 8 — Baño 2 (dorado) -->
+        <article class="proyecto-card reveal-scale stagger-8">
+          <img
+            src="Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Ba%C3%B1o%202/Ba%C3%B1o%202.png"
+            alt="Baño dorado de lujo — Modern Space"
+            loading="lazy"
+          />
+          <span class="proyecto-card__tag">Baño</span>
+          <div class="proyecto-card__overlay">
+            <h3 class="proyecto-card__title">Calidez que envuelve.</h3>
+            <p class="proyecto-card__meta">Baño dorado &middot; 2025</p>
+            <a class="proyecto-card__link" href="proyecto.html?id=bano-2">
+              Ver proyecto
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PROCESO (#proceso)
+       5 pasos del catálogo (pg. 20). Línea vertical dorada.
+       Imagen lateral: escalera flotante (catálogo pg. 8).
+       Para editar pasos: modificar .paso__title y .paso__desc.
+  ============================================================ -->
+  <section id="proceso" aria-labelledby="proceso-heading">
+    <div class="container">
+      <div class="proceso__layout">
+
+        <!-- Columna izquierda: pasos -->
+        <div>
+          <span class="section-label reveal">Cómo trabajamos</span>
+          <h2 class="section-title reveal" id="proceso-heading">
+            Cómo trabajamos<br>contigo.
+          </h2>
+          <p class="section-body reveal" style="margin-bottom: 60px;">
+            Un proceso claro, sin sorpresas. Desde la visita inicial
+            hasta la entrega final con garantía.
+          </p>
+
+          <div class="proceso__steps">
+
+            <div class="paso reveal stagger-1">
+              <div class="paso__number">01</div>
+              <div class="paso__content">
+                <h3 class="paso__title">Conversación</h3>
+                <p class="paso__desc">
+                  Visita técnica, medición y diagnóstico del espacio.
+                  Conversación honesta sobre presupuesto y tiempos.
+                </p>
+              </div>
+            </div>
+
+            <div class="paso reveal stagger-2">
+              <div class="paso__number">02</div>
+              <div class="paso__content">
+                <h3 class="paso__title">Diseño</h3>
+                <p class="paso__desc">
+                  Propuesta visual con renders, materiales seleccionados
+                  y cotización detallada. Sin sorpresas después.
+                </p>
+              </div>
+            </div>
+
+            <div class="paso reveal stagger-3">
+              <div class="paso__number">03</div>
+              <div class="paso__content">
+                <h3 class="paso__title">Aprobación</h3>
+                <p class="paso__desc">
+                  Revisamos cada detalle juntos, ajustamos lo necesario
+                  y firmamos contrato con plazos claros.
+                </p>
+              </div>
+            </div>
+
+            <div class="paso reveal stagger-4">
+              <div class="paso__number">04</div>
+              <div class="paso__content">
+                <h3 class="paso__title">Fabricación</h3>
+                <p class="paso__desc">
+                  Construimos en taller con seguimiento semanal.
+                  Materiales de primera calidad, acabados impecables.
+                </p>
+              </div>
+            </div>
+
+            <div class="paso reveal stagger-5">
+              <div class="paso__number">05</div>
+              <div class="paso__content">
+                <h3 class="paso__title">Instalación</h3>
+                <p class="paso__desc">
+                  Montaje en sitio, entrega final y revisión punto por punto.
+                  Garantía y soporte después de la instalación.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Columna derecha: mockup de diseño -->
+        <div class="proceso__image reveal-right">
+          <img
+            src="Modern%20Space/Pagina%20Web/Ups/ups%20escalera.png"
+            alt="Escalera flotante — diseño Modern Space"
+            loading="lazy"
+          />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CATÁLOGO CTA (#catalogo)
+       Sección oscura para descargar el PDF del catálogo 2026.
+       NOTA: El nombre del archivo PDF tiene DOBLE ESPACIO antes
+       del paréntesis. Esto está codificado como %20%20 en la URL.
+  ============================================================ -->
+  <section id="catalogo" aria-labelledby="catalogo-heading">
+    <div class="container">
+      <div class="catalogo__inner">
+
+        <div class="reveal-left">
+          <p class="catalogo__eyebrow">Catálogo 2026</p>
+          <h2 class="catalogo__title" id="catalogo-heading">
+            Todo lo que hacemos,<br>en un solo lugar.
+          </h2>
+          <p class="catalogo__desc">
+            Descarga nuestro catálogo completo y recorre los proyectos,
+            materiales y posibilidades que Modern Space tiene para ti.
+          </p>
+          <div class="catalogo__action" style="margin-top: 36px; align-items: flex-start;">
+            <a
+              href="Modern%20Space/Pagina%20Web/Catalogo/Propuesta%20Catalogo%20Modern%20Space%20%20(1).pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary"
+              aria-label="Ver catálogo Modern Space 2026 en PDF"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Descargar Catálogo
+            </a>
+            <span class="catalogo__note">PDF · Catálogo 2026 · Gratuito</span>
+          </div>
+        </div>
+
+        <div class="catalogo__mockup reveal-right">
+          <img
+            src="Modern%20Space/Pagina%20Web/Ups/Catalgo%20portada%20Mockup.png"
+            alt="Catálogo Modern Space 2026"
+            loading="lazy"
+          />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTACTO (#contacto)
+       Columna izq.: info de contacto + WhatsApp + redes.
+       Columna der.: formulario con validación en JS.
+       IMPORTANTE: reemplazar TODOS los datos de ejemplo:
+         - Teléfono: buscar "+506 XXXX-XXXX"
+         - Email: buscar "info@modernspace.cr"
+         - WhatsApp href: buscar "wa.me/50600000000"
+         - Instagram href: buscar "instagram.com/modernspace"
+  ============================================================ -->
+  <section id="contacto" aria-labelledby="contacto-heading">
+    <div class="container">
+
+      <div style="text-align:center; max-width:600px; margin: 0 auto 70px;" class="reveal">
+        <span class="section-label">Contacto</span>
+        <h2 class="section-title" id="contacto-heading" style="text-align:center;">
+          Hablemos de tu proyecto.
+        </h2>
+      </div>
+
+      <div class="contacto__layout">
+
+        <!-- Columna izquierda: datos -->
+        <div class="reveal-left">
+
+          <p class="contacto__tagline">
+            "Cada gran espacio<br>empieza con una conversación."
+          </p>
+
+          <div class="contacto__info-list">
+
+            <!-- TELÉFONO — reemplazar número -->
+            <div class="info-item">
+              <div class="info-item__icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11.5 19.79 19.79 0 0 1 1.61 2.88 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.55a16 16 0 0 0 6.08 6.08l1.62-1.62a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="info-item__label">Teléfono</p>
+                <p class="info-item__value"><a href="tel:+50688848017">+506 8884-8017</a></p>
+              </div>
+            </div>
+
+            <!-- EMAIL — reemplazar dirección -->
+            <div class="info-item">
+              <div class="info-item__icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <div>
+                <p class="info-item__label">Correo</p>
+                <p class="info-item__value"><a href="mailto:moderspace89@gmail.com">moderspace89@gmail.com</a></p>
+              </div>
+            </div>
+
+            <!-- UBICACIÓN — reemplazar si es necesario -->
+            <div class="info-item">
+              <div class="info-item__icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <p class="info-item__label">Ubicación</p>
+                <p class="info-item__value">Alajuela, Costa Rica</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- WHATSAPP — reemplazar número en href -->
+          <a
+            href="https://wa.me/50688848017?text=Hola%20Modern%20Space%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="whatsapp-btn"
+            aria-label="Contactar por WhatsApp"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.128.558 4.127 1.528 5.861L.058 23.454a.5.5 0 0 0 .612.612l5.593-1.47A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.944 9.944 0 0 1-5.07-1.381l-.363-.216-3.763.988.988-3.762-.216-.363A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+            </svg>
+            Escribir por WhatsApp
+          </a>
+
+          <!-- REDES SOCIALES -->
+          <div class="contacto__social" style="margin-top: 32px;">
+            <a href="https://www.instagram.com/modernspace.cr/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram de Modern Space">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/share/17u4mJZ7ng/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook de Modern Space">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/modernspacecr/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn de Modern Space">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect x="2" y="9" width="4" height="12"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Columna derecha: formulario -->
+        <div class="reveal-right">
+          <form id="contactForm" action="https://formspree.io/f/mykvwbvp" method="POST" novalidate aria-label="Formulario de contacto">
+
+            <div class="form-row">
+              <div class="form-group" id="group-nombre">
+                <label for="nombre">Nombre *</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" autocomplete="name" />
+                <span class="form-group__error-msg">Por favor ingresa tu nombre.</span>
+              </div>
+              <div class="form-group" id="group-telefono">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="+506 0000-0000" autocomplete="tel" />
+              </div>
+            </div>
+
+            <div class="form-group" id="group-email">
+              <label for="email">Correo electrónico *</label>
+              <input type="email" id="email" name="email" placeholder="tu@correo.com" autocomplete="email" />
+              <span class="form-group__error-msg">Por favor ingresa un correo válido.</span>
+            </div>
+
+            <div class="form-group" id="group-servicio">
+              <label for="servicio">¿Qué necesitas?</label>
+              <select id="servicio" name="servicio">
+                <option value="">Selecciona un servicio</option>
+                <option value="cocina">Diseño de Cocina</option>
+                <option value="bano">Baño Personalizado</option>
+                <option value="closet">Clóset a Medida</option>
+                <option value="escalera">Escalera Flotante</option>
+                <option value="puerta">Puertas de Madera</option>
+                <option value="hogar">Diseño del Hogar</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+
+            <div class="form-group" id="group-mensaje">
+              <label for="mensaje">Mensaje *</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos sobre tu proyecto, espacio y visión..."></textarea>
+              <span class="form-group__error-msg">Por favor escribe un mensaje.</span>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width:100%; justify-content:center; margin-top:8px;">
+              Enviar mensaje
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+
+            <!-- Mensaje de éxito — visible al enviar correctamente -->
+            <div class="form__success" id="formSuccess" role="alert">
+              <p>
+                <strong>¡Gracias por escribirnos!</strong><br>
+                Recibimos tu mensaje. Nos pondremos en contacto contigo en menos de 24 horas.
+              </p>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       Para actualizar links: buscar las secciones dentro del .footer__grid
+  ============================================================ -->
+  <footer aria-label="Pie de página Modern Space">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div class="footer__brand">
+          <img src="Modern%20Space/Pagina%20Web/Logos%20sin%20fondo/Letras%20blancas.png" alt="Modern Space" />
+          <p class="footer__tagline">"Diseño que acompaña"</p>
+          <p class="footer__brand-text">
+            Estudio de diseño de interiores especializado en cocinas,
+            baños y espacios del hogar. Fabricación e instalación propias en Costa Rica.
+          </p>
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__col-title">Navegación</p>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#filosofia">Filosofía</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#proceso">Proceso</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__col-title">Servicios</p>
+          <ul>
+            <li><a href="#servicios">Cocinas</a></li>
+            <li><a href="#servicios">Baños</a></li>
+            <li><a href="#servicios">Clósets</a></li>
+            <li><a href="#servicios">Escaleras</a></li>
+            <li><a href="#servicios">Puertas</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__col-title">Contacto</p>
+          <ul>
+            <li><a href="tel:+50688848017">+506 8884-8017</a></li>
+            <li><a href="mailto:moderspace89@gmail.com">moderspace89@gmail.com</a></li>
+            <li><a href="https://www.instagram.com/modernspace.cr/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="https://www.facebook.com/share/17u4mJZ7ng/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+            <li><a href="https://www.linkedin.com/company/modernspacecr/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="#catalogo">Catálogo PDF</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">
+          &copy; <span id="currentYear"></span> Modern Space. Todos los derechos reservados.
+        </p>
+        <p class="footer__cats">Baño &middot; Cocina &middot; Hogar</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Botón volver arriba -->
+  <button id="scrollTopBtn" aria-label="Volver al inicio">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+       Tabla de contenidos:
+       1. Año dinámico en footer
+       2. Navbar: scroll → cambio de estilo
+       3. Hamburger menu (móvil)
+       4. Scroll Reveal con IntersectionObserver
+       5. Counter animation (stats)
+       6. Hero carousel (carrusel automático)
+       7. Parallax suave en el hero
+       8. Botón scroll-to-top
+       9. Validación del formulario
+  ============================================================ -->
+  <script>
+    'use strict';
+
+
+    /* ─── 1. AÑO DINÁMICO ──────────────────────────────── */
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+
+    /* ─── 2. NAVBAR SCROLL ─────────────────────────────────
+       Añade .scrolled cuando el usuario baja más de 60px.
+       El CSS maneja los cambios visuales. */
+    const navbar = document.getElementById('navbar');
+
+    function handleNavbarScroll() {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }
+    window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+    handleNavbarScroll();
+
+
+    /* ─── 3. HAMBURGER MENU ────────────────────────────────
+       Abre/cierra el menú overlay en pantallas pequeñas.
+       closeMobileMenu() es llamada también por los links del menú. */
+    const burgerBtn  = document.getElementById('burgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    burgerBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      burgerBtn.classList.toggle('open', isOpen);
+      burgerBtn.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      burgerBtn.classList.remove('open');
+      burgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMobileMenu();
+    });
+
+
+    /* ─── 4. SCROLL REVEAL ─────────────────────────────────
+       IntersectionObserver añade .visible a los elementos
+       con clases reveal / reveal-left / reveal-right / reveal-scale
+       cuando el 12% de ellos entra en viewport. */
+    const revealEls = document.querySelectorAll(
+      '.reveal, .reveal-left, .reveal-right, .reveal-scale'
+    );
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    revealEls.forEach((el) => revealObserver.observe(el));
+
+
+    /* ─── 5. COUNTER ANIMATION ─────────────────────────────
+       Anima los números desde 0 hasta data-target.
+       data-suffix: texto que se añade al número ("+", " años", "%").
+       Se dispara una sola vez al entrar en viewport. */
+    function animateCounter(el) {
+      const target   = parseInt(el.dataset.target, 10);
+      const suffix   = el.dataset.suffix || '';
+      const duration = 1800;
+      const start    = performance.now();
+
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased    = 1 - (1 - progress) * (1 - progress); // easeOutQuad
+        el.textContent = Math.round(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    const counterEls = document.querySelectorAll('.stat-item__number[data-target]');
+    const counterObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    counterEls.forEach((el) => counterObserver.observe(el));
+
+
+    /* ─── 6. HERO CAROUSEL ─────────────────────────────────
+       Avanza entre las slides cada 5s con crossfade opacity.
+       La slide activa tiene opacity:1, las demás opacity:0. */
+    const heroCarousel = document.getElementById('heroCarousel');
+    const carouselSlides = document.querySelectorAll('.hero__carousel-slide');
+    let currentSlide = 0;
+
+    function advanceSlide() {
+      carouselSlides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % carouselSlides.length;
+      carouselSlides[currentSlide].classList.add('active');
+    }
+
+    if (carouselSlides.length > 1) setInterval(advanceSlide, 5000);
+
+
+    /* ─── 7. PARALLAX HERO ─────────────────────────────────
+       Desplaza el carrusel a 35% de la velocidad de scroll.
+       Desactivado en móvil (< 768px) por performance. */
+    function handleParallax() {
+      if (window.innerWidth < 768 || !heroCarousel) return;
+      heroCarousel.style.transform = `translateY(${Math.min(window.scrollY * 0.35, 60)}px)`;
+    }
+    window.addEventListener('scroll', handleParallax, { passive: true });
+
+
+    /* ─── 7. SCROLL TO TOP ─────────────────────────────────
+       Aparece cuando se pasa de 500px de scroll. */
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+    }, { passive: true });
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+
+    /* ─── 8. VALIDACIÓN DEL FORMULARIO + FORMSPREE ─────────
+       Valida nombre, email y mensaje antes de enviar.
+       Si es válido, envía a Formspree con fetch para no
+       redirigir la página, luego muestra el mensaje de éxito. */
+    const contactForm = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function setFieldError(groupId, hasError) {
+      const group = document.getElementById('group-' + groupId);
+      if (group) group.classList.toggle('error', hasError);
+    }
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nombre  = document.getElementById('nombre').value.trim();
+      const email   = document.getElementById('email').value.trim();
+      const mensaje = document.getElementById('mensaje').value.trim();
+      let valid = true;
+
+      setFieldError('nombre',  !nombre);
+      setFieldError('email',   !email || !validateEmail(email));
+      setFieldError('mensaje', !mensaje);
+
+      if (!nombre || !email || !validateEmail(email) || !mensaje) valid = false;
+
+      if (valid) {
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando…';
+
+        try {
+          const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (response.ok) {
+            contactForm.reset();
+            formSuccess.classList.add('visible');
+            formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Error al enviar — intentar de nuevo';
+          }
+        } catch {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Error de red — intentar de nuevo';
+        }
+      }
+    });
+
+    // Limpiar error en tiempo real al escribir
+    contactForm.querySelectorAll('input, textarea').forEach((field) => {
+      field.addEventListener('input', () => {
+        field.closest('.form-group')?.classList.remove('error');
+      });
+    });
+
+  </script>
+
+</body>
+</html>

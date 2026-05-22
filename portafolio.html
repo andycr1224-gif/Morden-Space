@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio — Modern Space</title>
+  <meta name="description" content="Portafolio de proyectos — Modern Space · Cocinas, Baños y Hogar en Costa Rica." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── VARIABLES ─────────────────────────────────────────── */
+    :root {
+      --cream:      #F2EDE0;
+      --cream-dark: #E5DDD0;
+      --gold:       #B89B5E;
+      --gold-light: #D4B97A;
+      --dark:       #1C1C1C;
+      --dark-mid:   #2A2A2A;
+      --charcoal:   #3D3D3D;
+      --text-body:  #4A4545;
+      --text-muted: #8A8075;
+      --white:      #FFFFFF;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+      --t-fast:     0.18s ease-out;
+      --t-base:     0.26s ease-out;
+      --ease-out:   cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    /* ─── RESET ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--dark);
+      color: var(--text-body);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a   { text-decoration: none; color: inherit; }
+    ul  { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+
+    /* ─── NAVBAR ─────────────────────────────────────────────── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 22px 0;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 1px 24px rgba(0,0,0,0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .navbar__inner { display: flex; align-items: center; justify-content: space-between; }
+    .navbar__logo img { height: 80px; width: auto; }
+
+    .navbar__links {
+      display: flex; align-items: center; gap: 36px;
+    }
+    .navbar__links a {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--charcoal);
+      position: relative; transition: color var(--t-fast);
+    }
+    .navbar__links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1.5px; background: var(--gold);
+      transition: width var(--t-base);
+    }
+    .navbar__links a:hover { color: var(--dark); }
+    .navbar__links a:hover::after { width: 100%; }
+    .navbar__links a.active { color: var(--dark); }
+    .navbar__links a.active::after { width: 100%; }
+
+    /* Hamburger */
+    .navbar__burger {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; width: 34px; height: 34px;
+      background: transparent; border: none; cursor: pointer;
+    }
+    .navbar__burger span {
+      display: block; height: 1.5px; background: var(--dark);
+      transition: transform var(--t-base), opacity var(--t-fast);
+      transform-origin: center;
+    }
+    .navbar__burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .navbar__burger.open span:nth-child(2) { opacity: 0; }
+    .navbar__burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .navbar__mobile {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--dark); z-index: 999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 36px; opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.32s var(--ease-out), visibility 0.32s;
+    }
+    .navbar__mobile.open { opacity: 1; visibility: visible; pointer-events: all; }
+    .navbar__mobile a {
+      font-family: var(--font-serif); font-style: italic; font-size: 2rem;
+      color: var(--white); opacity: 0; transform: translateY(18px);
+      transition: color var(--t-fast), opacity 0.38s var(--ease-out), transform 0.38s var(--ease-out);
+    }
+    .navbar__mobile.open a { opacity: 1; transform: translateY(0); }
+    .navbar__mobile.open a:nth-child(1) { transition-delay: 0.06s; }
+    .navbar__mobile.open a:nth-child(2) { transition-delay: 0.12s; }
+    .navbar__mobile.open a:nth-child(3) { transition-delay: 0.18s; }
+    .navbar__mobile.open a:nth-child(4) { transition-delay: 0.24s; }
+    .navbar__mobile.open a:nth-child(5) { transition-delay: 0.30s; }
+    .navbar__mobile a:hover { color: var(--gold); }
+
+
+    /* ─── PAGE HEADER ────────────────────────────────────────── */
+    .port-header {
+      padding: 164px 0 0;
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Círculo decorativo */
+    .port-header::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 560px; height: 560px;
+      border-radius: 50%;
+      border: 1px solid rgba(184,155,94,0.07);
+      pointer-events: none;
+    }
+
+    .port-header__inner { position: relative; z-index: 1; }
+
+    .port-header__label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 20px; display: block;
+    }
+
+    .port-header__title {
+      font-family: var(--font-serif);
+      font-style: italic; font-weight: 400;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      color: var(--white); line-height: 1.1;
+      margin-bottom: 64px;
+    }
+
+
+    /* ─── TABS DE CATEGORÍA ──────────────────────────────────── */
+    .port-tabs {
+      display: flex;
+      align-items: stretch;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .port-tab {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 26px 48px 26px 0;
+      font-size: 12px; font-weight: 500; letter-spacing: 0.16em;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+      position: relative;
+      transition: color 0.22s var(--ease-out);
+    }
+
+    /* Línea inferior animada */
+    .port-tab::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--gold);
+      transition: width 0.38s var(--ease-out);
+    }
+
+    .port-tab.active { color: var(--white); }
+    .port-tab.active::after { width: calc(100% - 48px); }
+    .port-tab:hover:not(.active) { color: rgba(255,255,255,0.6); }
+
+    /* Contador de proyectos en la tab */
+    .port-tab__count {
+      font-size: 10px; font-weight: 600;
+      color: var(--gold);
+      background: rgba(184,155,94,0.14);
+      padding: 2px 8px;
+      border-radius: 20px;
+      transition: background 0.22s var(--ease-out);
+    }
+    .port-tab.active .port-tab__count { background: rgba(184,155,94,0.25); }
+
+
+    /* ─── GRID DE PROYECTOS ──────────────────────────────────── */
+    .port-grid-wrap {
+      padding: 60px 0 100px;
+      background: var(--dark);
+    }
+
+    .port-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      opacity: 1;
+      transition: opacity 0.22s var(--ease-out);
+    }
+
+    .port-grid.fading { opacity: 0; }
+
+    /* Card de proyecto */
+    .port-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      display: block;
+    }
+
+    .port-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .port-card:hover img { transform: scale(1.06); }
+      .port-card:hover .port-card__overlay {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .port-card__tag {
+      position: absolute; top: 20px; left: 20px;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(10,10,10,0.6);
+      backdrop-filter: blur(4px);
+      padding: 6px 12px;
+    }
+
+    .port-card__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(10,10,10,0.92) 0%,
+        rgba(10,10,10,0.45) 55%,
+        transparent 100%
+      );
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 28px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.24s var(--ease-out), transform 0.24s var(--ease-out);
+    }
+
+    .port-card__title {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 1.25rem; font-weight: 400;
+      color: var(--white); margin-bottom: 6px;
+    }
+
+    .port-card__meta {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .port-card__link {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 14px; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold);
+      transition: gap 0.18s ease-out;
+    }
+    .port-card:hover .port-card__link { gap: 14px; }
+
+    /* Estado vacío */
+    .port-empty {
+      grid-column: 1 / -1;
+      text-align: center; padding: 100px 40px;
+    }
+    .port-empty__title {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 1.6rem; color: rgba(255,255,255,0.2);
+    }
+
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    .footer-min {
+      background: var(--dark-mid, #2A2A2A);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 40px 0;
+    }
+    .footer-min__inner {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 20px;
+    }
+    .footer-min img { height: 48px; }
+    .footer-min__copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+    .footer-min__cats {
+      font-size: 11px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(255,255,255,0.2);
+    }
+
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .container { padding: 0 28px; }
+      .port-grid { grid-template-columns: repeat(2, 1fr); }
+      .port-header { padding: 140px 0 0; }
+      .port-header__title { margin-bottom: 48px; }
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      .navbar__links { display: none; }
+      .navbar__burger { display: flex; }
+      .port-header { padding: 120px 0 0; }
+      .port-header__title { margin-bottom: 36px; }
+      .port-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .port-tab { padding: 22px 32px 22px 0; white-space: nowrap; }
+      .port-tab.active::after { width: calc(100% - 32px); }
+      .port-grid { grid-template-columns: 1fr; }
+      .port-grid-wrap { padding: 40px 0 72px; }
+      .port-card__overlay { opacity: 1; transform: translateY(0); }
+      .footer-min__inner { flex-direction: column; text-align: center; gap: 12px; }
+      .footer-min__cats { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .port-tab { font-size: 11px; padding: 20px 24px 20px 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="container">
+      <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo" aria-label="Modern Space — inicio">
+          <img src="Modern%20Space/Pagina%20Web/Logos%20sin%20fondo/Letras%20negras.png" alt="Modern Space" />
+        </a>
+        <ul class="navbar__links" role="list">
+          <li><a href="index.html#inicio">Inicio</a></li>
+          <li><a href="index.html#servicios">Servicios</a></li>
+          <li><a href="portafolio.html" class="active">Portafolio</a></li>
+          <li><a href="index.html#proceso">Proceso</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+        <button class="navbar__burger" id="burgerBtn" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="navbar__mobile" id="mobileMenu" role="dialog" aria-label="Menú de navegación">
+    <a href="index.html#inicio"    onclick="closeMobileMenu()">Inicio</a>
+    <a href="index.html#servicios" onclick="closeMobileMenu()">Servicios</a>
+    <a href="portafolio.html"      onclick="closeMobileMenu()">Portafolio</a>
+    <a href="index.html#proceso"   onclick="closeMobileMenu()">Proceso</a>
+    <a href="index.html#contacto"  onclick="closeMobileMenu()">Contacto</a>
+  </div>
+
+
+  <!-- ── PAGE HEADER CON TABS ── -->
+  <header class="port-header">
+    <div class="container port-header__inner">
+      <span class="port-header__label">Portafolio</span>
+      <h1 class="port-header__title">
+        Proyectos que<br>se sienten.
+      </h1>
+
+      <div class="port-tabs" role="tablist" aria-label="Filtrar por categoría">
+        <button class="port-tab" data-cat="todos"  role="tab" aria-selected="false">
+          Todos <span class="port-tab__count">8</span>
+        </button>
+        <button class="port-tab" data-cat="cocina" role="tab" aria-selected="false">
+          Cocina <span class="port-tab__count">2</span>
+        </button>
+        <button class="port-tab" data-cat="bano"   role="tab" aria-selected="false">
+          Baño <span class="port-tab__count">2</span>
+        </button>
+        <button class="port-tab" data-cat="hogar"  role="tab" aria-selected="false">
+          Hogar <span class="port-tab__count">4</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ── GRID DE PROYECTOS ── -->
+  <section class="port-grid-wrap" aria-label="Proyectos">
+    <div class="container">
+      <div class="port-grid" id="portGrid" role="list">
+        <!-- Renderizado por JS -->
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer-min" aria-label="Pie de página">
+    <div class="container">
+      <div class="footer-min__inner">
+        <img src="Modern%20Space/Pagina%20Web/Logos%20sin%20fondo/Letras%20blancas.png" alt="Modern Space" />
+        <p class="footer-min__copy">
+          &copy; <span id="currentYear"></span> Modern Space. Todos los derechos reservados.
+        </p>
+        <p class="footer-min__cats">Baño &middot; Cocina &middot; Hogar</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    'use strict';
+
+    /* ─── 1. DATOS POR CATEGORÍA ──────────────────────────────── */
+    const PORTFOLIO = {
+      cocina: [
+        {
+          id:    'cocina-carrillos',
+          title: 'Funcional, elegante, tuya.',
+          meta:  'Cocina a medida · 2025',
+          tag:   'Cocina',
+          img:   'Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Cocina%201/Concina%201.png',
+        },
+        {
+          id:    'cocina-quinta',
+          title: 'Color y carácter en cada rincón.',
+          meta:  'Cocina moderna · 2026',
+          tag:   'Cocina',
+          img:   'Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Cocina%202/Cocina%202.png',
+        },
+      ],
+      bano: [
+        {
+          id:    'bano',
+          title: 'Tu baño, rediseñado.',
+          meta:  'Baño personalizado · 2025',
+          tag:   'Baño',
+          img:   'Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Ba%C3%B1o%201/Ba%C3%B1o%201.png',
+        },
+        {
+          id:    'bano-2',
+          title: 'Calidez que envuelve.',
+          meta:  'Baño dorado · 2025',
+          tag:   'Baño',
+          img:   'Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Ba%C3%B1o%202/Ba%C3%B1o%202.png',
+        },
+      ],
+      hogar: [
+        {
+          id:    'sala-grecia',
+          title: 'Un hogar que se siente como tal.',
+          meta:  'Casa habitación · 2025',
+          tag:   'Hogar',
+          img:   'Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Casa%20habitaci%C3%B3n%201/Casa%20habitaci%C3%B3n.png',
+        },
+        {
+          id:    'escalera-ilios',
+          title: 'Donde el espacio sube de nivel.',
+          meta:  'Escalera flotante · 2025',
+          tag:   'Escalera',
+          img:   'Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Escalera/Escalera.png',
+        },
+        {
+          id:    'closet-poas',
+          title: 'Orden que también se ve bien.',
+          meta:  'Clóset a medida · 2025',
+          tag:   'Clóset',
+          img:   'Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Closet%201/Closet%20in.png',
+        },
+        {
+          id:    'puerta-ilios',
+          title: 'El primer detalle lo cambia todo.',
+          meta:  'Puerta · Condominio Ilios · 2025',
+          tag:   'Puerta',
+          img:   'Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Puerta%201%20Ilios/Puerta%20Ilios.png',
+        },
+      ],
+    };
+
+    const ALL = [
+      ...PORTFOLIO.cocina,
+      ...PORTFOLIO.bano,
+      ...PORTFOLIO.hogar,
+    ];
+
+
+    /* ─── 2. RENDER ───────────────────────────────────────────── */
+    const grid = document.getElementById('portGrid');
+    const tabs = document.querySelectorAll('.port-tab');
+
+    function getProjects(cat) {
+      return cat === 'todos' ? ALL : (PORTFOLIO[cat] || []);
+    }
+
+    function cardHTML(p) {
+      return `
+        <a class="port-card" href="proyecto.html?id=${p.id}" role="listitem" aria-label="${p.title}">
+          <img src="${p.img}" alt="${p.title}" loading="lazy" />
+          <span class="port-card__tag">${p.tag}</span>
+          <div class="port-card__overlay">
+            <h2 class="port-card__title">${p.title}</h2>
+            <p class="port-card__meta">${p.meta}</p>
+            <span class="port-card__link">
+              Ver proyecto
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      `;
+    }
+
+    function renderGrid(cat) {
+      const projects = getProjects(cat);
+      grid.classList.add('fading');
+
+      setTimeout(() => {
+        grid.innerHTML = projects.length
+          ? projects.map(cardHTML).join('')
+          : `<div class="port-empty"><p class="port-empty__title">Sin proyectos en esta categoría.</p></div>`;
+        grid.classList.remove('fading');
+      }, 200);
+    }
+
+
+    /* ─── 3. TAB SWITCHING ────────────────────────────────────── */
+    function setTab(cat) {
+      tabs.forEach(t => {
+        const active = t.dataset.cat === cat;
+        t.classList.toggle('active', active);
+        t.setAttribute('aria-selected', active);
+      });
+      renderGrid(cat);
+
+      /* Actualiza URL sin recargar */
+      const url = new URL(window.location.href);
+      cat === 'todos'
+        ? url.searchParams.delete('categoria')
+        : url.searchParams.set('categoria', cat);
+      history.replaceState(null, '', url.toString());
+    }
+
+    tabs.forEach(tab => tab.addEventListener('click', () => setTab(tab.dataset.cat)));
+
+
+    /* ─── 4. INIT ────────────────────────────────────────────── */
+    const initCat = new URLSearchParams(window.location.search).get('categoria') || 'todos';
+    setTab(initCat);
+
+
+    /* ─── 5. NAVBAR HAMBURGER ─────────────────────────────────── */
+    const burgerBtn  = document.getElementById('burgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    burgerBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      burgerBtn.classList.toggle('open', isOpen);
+      burgerBtn.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      burgerBtn.classList.remove('open');
+      burgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeMobileMenu();
+    });
+
+
+    /* ─── 6. AÑO EN FOOTER ────────────────────────────────────── */
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
