@@ -1,0 +1,88 @@
+/* ============================================================
+   MODERN SPACE — ANIMATIONS (animations.css)
+   Sistema data-animate + line-reveal + efectos premium
+============================================================ */
+
+/* ── BASE: elementos ocultos hasta animarse ── */
+[data-animate] {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+[data-animate].is-visible {
+  opacity: 1;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* ── TIPOS ── */
+[data-animate="fade-up"]    { transform: translateY(40px); }
+[data-animate="fade-down"]  { transform: translateY(-30px); }
+[data-animate="fade-left"]  { transform: translateX(40px); }
+[data-animate="fade-right"] { transform: translateX(-40px); }
+[data-animate="scale-up"]   { transform: scale(0.92); }
+[data-animate="blur-in"]    { filter: blur(10px); transform: translateY(20px); }
+
+/* ── DELAYS ── */
+[data-delay="100"] { transition-delay: 0.1s; }
+[data-delay="200"] { transition-delay: 0.2s; }
+[data-delay="300"] { transition-delay: 0.3s; }
+[data-delay="400"] { transition-delay: 0.4s; }
+[data-delay="500"] { transition-delay: 0.5s; }
+[data-delay="600"] { transition-delay: 0.6s; }
+[data-delay="700"] { transition-delay: 0.7s; }
+[data-delay="800"] { transition-delay: 0.8s; }
+
+/* ── LINE REVEAL (para títulos de sección) ── */
+.line-reveal { overflow: hidden; }
+.line-reveal__inner {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.line-reveal.is-visible .line-reveal__inner { transform: translateY(0); }
+.line-reveal.is-visible .line-reveal__inner:nth-child(2) { transition-delay: 0.1s; }
+.line-reveal.is-visible .line-reveal__inner:nth-child(3) { transition-delay: 0.2s; }
+
+/* ── HOVER: image zoom ── */
+.img-hover-wrap { overflow: hidden; }
+.img-hover-wrap img {
+  transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.img-hover-wrap:hover img { transform: scale(1.04); }
+
+/* ── HOVER: link underline slide ── */
+.link-slide {
+  position: relative;
+  display: inline-block;
+}
+.link-slide::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.link-slide:hover::after { width: 100%; }
+
+/* ── MAGNETIC BUTTON (JS añade la transform) ── */
+.btn-magnetic { transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
+
+/* ── CARD HOVER LIFT ── */
+.card-lift {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .card-lift:hover { transform: translateY(-8px); box-shadow: 0 32px 80px rgba(0,0,0,0.12); }
+}
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] { transition-duration: 0.01ms !important; }
+  .line-reveal__inner { transition-duration: 0.01ms !important; }
+  .img-hover-wrap img { transition: none; }
+}
