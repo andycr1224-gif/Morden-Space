@@ -40,6 +40,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/animations.css" />
+  <!-- Google Analytics 4 — reemplazar G-XXXXXXXXXX con tu Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
 </head>
 <body>
 
@@ -52,7 +60,17 @@
         </a>
         <ul class="navbar__links" role="list">
           <li><a href="index.html#inicio">Inicio</a></li>
-          <li><a href="index.html#servicios">Servicios</a></li>
+          <li class="navbar__has-dropdown">
+          <a href="index.html#servicios">Servicios</a>
+          <ul class="navbar__dropdown" role="list">
+            <li><a href="cocinas-a-medida-costa-rica.html">Cocinas a medida</a></li>
+            <li><a href="banos-personalizados-costa-rica.html">Baños personalizados</a></li>
+            <li><a href="closets-a-medida-costa-rica.html">Clósets a medida</a></li>
+            <li><a href="escaleras-flotantes-costa-rica.html">Escaleras flotantes</a></li>
+            <li><a href="puertas-de-madera-costa-rica.html">Puertas de madera</a></li>
+            <li><a href="diseno-de-interiores-alajuela.html">Diseño en Alajuela</a></li>
+          </ul>
+        </li>
           <li><a href="portafolio.html">Proyectos</a></li>
           <li><a href="index.html#proceso">Proceso</a></li>
           <li><a href="index.html#contacto">Contacto</a></li>
@@ -71,6 +89,15 @@
     <a href="portafolio.html">Proyectos</a>
     <a href="index.html#proceso">Proceso</a>
     <a href="index.html#contacto">Contacto</a>
+  
+    <div class="navbar__mobile-group">
+      <span class="navbar__mobile-label">Servicios</span>
+      <a href="cocinas-a-medida-costa-rica.html" onclick="closeMobileMenu()">Cocinas</a>
+      <a href="banos-personalizados-costa-rica.html" onclick="closeMobileMenu()">Baños</a>
+      <a href="closets-a-medida-costa-rica.html" onclick="closeMobileMenu()">Clósets</a>
+      <a href="escaleras-flotantes-costa-rica.html" onclick="closeMobileMenu()">Escaleras</a>
+      <a href="puertas-de-madera-costa-rica.html" onclick="closeMobileMenu()">Puertas</a>
+    </div>
   </div>
 
   <section class="service-hero" aria-label="Estudio de diseño en Alajuela">

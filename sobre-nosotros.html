@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiénes Somos — Modern Space · Diseño de Interiores en Costa Rica</title>
+  <meta name="description" content="Conoce a Modern Space: estudio de diseño de interiores en Alajuela, Costa Rica. Historia, filosofía y el equipo detrás de cada proyecto." />
+  <link rel="canonical" href="https://modernspacecr.com/sobre-nosotros.html" />
+  <link rel="icon" type="image/png" href="Modern%20Space/Pagina%20Web/Logos%20sin%20fondo/Letras%20negras.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+
+  <!-- Google Analytics 4 — reemplazar G-XXXXXXXXXX con tu Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <style>
+    /* ── Navbar compacta ── */
+    .navbar {
+      padding: 14px 0;
+      background: rgba(255,255,255,0.97);
+      box-shadow: 0 1px 24px rgba(0,0,0,0.08);
+    }
+    .navbar__logo img { height: 52px; }
+
+    /* ── Hero mini ── */
+    .sn-hero {
+      padding: 116px 0 72px;
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .sn-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Cocina%201/Concina%201.png') center/cover no-repeat;
+      opacity: 0.12;
+    }
+    .sn-hero .container { position: relative; z-index: 1; }
+    .sn-hero__label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .sn-hero__title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 20px;
+      max-width: 700px;
+    }
+    .sn-hero__sub {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    /* ── Historia ── */
+    .sn-historia {
+      padding: 100px 0;
+      background: var(--cream);
+    }
+    .sn-historia__grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .sn-historia__eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .sn-historia__title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 28px;
+    }
+    .sn-historia__text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-body);
+      margin-bottom: 20px;
+    }
+    .sn-historia__img {
+      position: relative;
+    }
+    .sn-historia__img img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+    .sn-historia__img::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 60%;
+      height: 60%;
+      border: 2px solid var(--gold);
+      z-index: -1;
+    }
+
+    /* ── Filosofía ── */
+    .sn-filosofia {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .sn-filosofia__header {
+      max-width: 560px;
+      margin-bottom: 64px;
+    }
+    .sn-filosofia__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .sn-card {
+      padding: 40px 32px;
+      background: var(--cream);
+      border-top: 3px solid var(--gold);
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+    }
+    .sn-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.08);
+    }
+    .sn-card__num {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 2.4rem;
+      color: var(--gold);
+      opacity: 0.4;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .sn-card__title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+    .sn-card__text {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--text-body);
+    }
+
+    /* ── Stats ── */
+    .sn-stats {
+      padding: 80px 0;
+      background: var(--dark);
+    }
+    .sn-stats__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 48px;
+      text-align: center;
+    }
+    .sn-stat__num {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 400;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .sn-stat__label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── CTA ── */
+    .sn-cta {
+      padding: 100px 0;
+      background: var(--cream);
+      text-align: center;
+    }
+    .sn-cta__label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .sn-cta__title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 36px;
+    }
+    .sn-cta__actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .sn-filosofia__grid { grid-template-columns: repeat(2, 1fr); }
+      .sn-stats__grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      .navbar__links { display: none; }
+      .navbar__burger { display: flex; }
+      .sn-historia__grid { grid-template-columns: 1fr; gap: 48px; }
+      .sn-historia__img::after { display: none; }
+      .sn-filosofia__grid { grid-template-columns: 1fr; }
+      .sn-hero { padding: 110px 0 56px; }
+      .sn-historia { padding: 72px 0; }
+      .sn-filosofia { padding: 72px 0; }
+      .sn-stats { padding: 56px 0; }
+      .sn-cta { padding: 72px 0; }
+    }
+    @media (max-width: 480px) {
+      .sn-stats__grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .sn-cta__actions { flex-direction: column; align-items: stretch; }
+      .sn-cta__actions .btn-primary,
+      .sn-cta__actions .btn-outline { justify-content: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="container">
+      <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo" aria-label="Modern Space — inicio">
+          <img src="Modern%20Space/Pagina%20Web/Logos%20sin%20fondo/Letras%20negras.png" alt="Modern Space" />
+        </a>
+        <ul class="navbar__links" role="list">
+          <li><a href="index.html#inicio">Inicio</a></li>
+          <li class="navbar__has-dropdown">
+            <a href="index.html#servicios">Servicios</a>
+            <ul class="navbar__dropdown" role="list">
+              <li><a href="cocinas-a-medida-costa-rica.html">Cocinas a medida</a></li>
+              <li><a href="banos-personalizados-costa-rica.html">Baños personalizados</a></li>
+              <li><a href="closets-a-medida-costa-rica.html">Clósets a medida</a></li>
+              <li><a href="escaleras-flotantes-costa-rica.html">Escaleras flotantes</a></li>
+              <li><a href="puertas-de-madera-costa-rica.html">Puertas de madera</a></li>
+              <li><a href="diseno-de-interiores-alajuela.html">Diseño en Alajuela</a></li>
+            </ul>
+          </li>
+          <li><a href="portafolio.html">Proyectos</a></li>
+          <li><a href="index.html#proceso">Proceso</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+          <li><a href="index.html#contacto" class="navbar__cta">Cotizar</a></li>
+        </ul>
+        <button class="navbar__burger" id="burgerBtn" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="navbar__mobile" id="mobileMenu" role="dialog" aria-label="Menú de navegación">
+    <a href="index.html#inicio"    onclick="closeMobileMenu()">Inicio</a>
+    <a href="portafolio.html"      onclick="closeMobileMenu()">Proyectos</a>
+    <a href="index.html#proceso"   onclick="closeMobileMenu()">Proceso</a>
+    <a href="index.html#contacto"  onclick="closeMobileMenu()">Contacto</a>
+    <div class="navbar__mobile-group">
+      <span class="navbar__mobile-label">Servicios</span>
+      <a href="cocinas-a-medida-costa-rica.html" onclick="closeMobileMenu()">Cocinas</a>
+      <a href="banos-personalizados-costa-rica.html" onclick="closeMobileMenu()">Baños</a>
+      <a href="closets-a-medida-costa-rica.html" onclick="closeMobileMenu()">Clósets</a>
+      <a href="escaleras-flotantes-costa-rica.html" onclick="closeMobileMenu()">Escaleras</a>
+      <a href="puertas-de-madera-costa-rica.html" onclick="closeMobileMenu()">Puertas</a>
+    </div>
+  </div>
+
+
+  <!-- HERO -->
+  <header class="sn-hero" aria-label="Quiénes somos">
+    <div class="container">
+      <p class="sn-hero__label">Sobre nosotros</p>
+      <h1 class="sn-hero__title">El diseño que<br>acompaña.</h1>
+      <p class="sn-hero__sub">
+        Somos un estudio de diseño de interiores basado en Alajuela, Costa Rica.
+        Transformamos espacios en lugares que se sienten como propios.
+      </p>
+    </div>
+  </header>
+
+
+  <!-- HISTORIA -->
+  <section class="sn-historia" aria-labelledby="historia-heading">
+    <div class="container">
+      <div class="sn-historia__grid">
+
+        <div>
+          <p class="sn-historia__eyebrow">Nuestra historia</p>
+          <h2 class="sn-historia__title" id="historia-heading">
+            Nacimos del deseo<br>de hacer las cosas bien.
+          </h2>
+          <p class="sn-historia__text">
+            Modern Space nació en Alajuela con una convicción simple: que los espacios bien diseñados mejoran
+            la vida de las personas. Desde nuestros primeros proyectos, entendimos que el diseño no es solo
+            estética — es funcionalidad, materiales honestos y un proceso transparente de principio a fin.
+          </p>
+          <p class="sn-historia__text">
+            Hoy atendemos proyectos en todo Costa Rica, desde cocinas y baños hasta escaleras flotantes y
+            puertas de madera a medida. Cada proyecto es único, y lo tratamos así: con dedicación, con
+            escucha activa y con el compromiso de entregar exactamente lo que prometemos.
+          </p>
+          <p class="sn-historia__text">
+            Fabricación e instalación propias. Sin intermediarios. Con garantía en cada entrega.
+          </p>
+        </div>
+
+        <div class="sn-historia__img">
+          <img
+            src="Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Escalera/Escalera.png"
+            alt="Escalera flotante — proyecto Modern Space"
+            loading="lazy"
+          />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FILOSOFÍA -->
+  <section class="sn-filosofia" aria-labelledby="filosofia-heading">
+    <div class="container">
+
+      <div class="sn-filosofia__header">
+        <p class="section-label">Nuestra filosofía</p>
+        <h2 class="section-title" id="filosofia-heading">
+          Tres principios que<br>guían cada decisión.
+        </h2>
+      </div>
+
+      <div class="sn-filosofia__grid">
+
+        <div class="sn-card">
+          <div class="sn-card__num">01</div>
+          <h3 class="sn-card__title">Diseño con propósito.</h3>
+          <p class="sn-card__text">
+            Cada elemento tiene una razón de ser. No diseñamos para impresionar,
+            sino para que el espacio funcione y se disfrute cada día.
+          </p>
+        </div>
+
+        <div class="sn-card">
+          <div class="sn-card__num">02</div>
+          <h3 class="sn-card__title">Calidad sin concesiones.</h3>
+          <p class="sn-card__text">
+            Seleccionamos materiales de primera y controlamos cada etapa del proceso.
+            Lo que entregamos es lo que prometimos — sin atajos.
+          </p>
+        </div>
+
+        <div class="sn-card">
+          <div class="sn-card__num">03</div>
+          <h3 class="sn-card__title">Acompañamiento real.</h3>
+          <p class="sn-card__text">
+            Estamos desde la primera visita hasta la entrega final. Y después también.
+            Porque nuestra relación con el cliente no termina en la instalación.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- STATS -->
+  <section class="sn-stats" aria-label="Datos sobre Modern Space">
+    <div class="container">
+      <div class="sn-stats__grid">
+
+        <div>
+          <p class="sn-stat__num">+50</p>
+          <p class="sn-stat__label">Proyectos completados</p>
+        </div>
+        <div>
+          <p class="sn-stat__num">+3</p>
+          <p class="sn-stat__label">Años de experiencia</p>
+        </div>
+        <div>
+          <p class="sn-stat__num">100%</p>
+          <p class="sn-stat__label">Fabricación propia</p>
+        </div>
+        <div>
+          <p class="sn-stat__num">GAM+</p>
+          <p class="sn-stat__label">Cobertura nacional</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section class="sn-cta" aria-label="Contactar a Modern Space">
+    <div class="container">
+      <p class="sn-cta__label">¿Tienes un proyecto en mente?</p>
+      <h2 class="sn-cta__title">Conversemos.<br>La primera visita es gratuita.</h2>
+      <div class="sn-cta__actions">
+        <a href="https://wa.me/50688848017?text=Hola%2C%20me%20interesa%20una%20visita%20t%C3%A9cnica%20gratuita"
+           class="btn-primary" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.524 5.845L.057 23.938a.5.5 0 0 0 .612.612l6.093-1.467A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.9 9.9 0 0 1-5.04-1.374l-.36-.214-3.733.979.999-3.648-.235-.374A9.86 9.86 0 0 1 2.1 12c0-5.468 4.432-9.9 9.9-9.9 5.467 0 9.9 4.432 9.9 9.9 0 5.467-4.433 9.9-9.9 9.9z"/>
+          </svg>
+          Visita técnica gratuita
+        </a>
+        <a href="portafolio.html" class="btn-outline">Ver proyectos</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer-min" aria-label="Pie de página">
+    <div class="container">
+      <div class="footer-min__inner">
+        <img src="Modern%20Space/Pagina%20Web/Logos%20sin%20fondo/Letras%20blancas.png" alt="Modern Space" />
+        <p class="footer-min__copy">&copy; <span id="currentYear"></span> Modern Space. Todos los derechos reservados.</p>
+        <p class="footer-min__cats">Baño &middot; Cocina &middot; Hogar</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-follow" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <a href="https://wa.me/50688848017?text=Hola%2C%20me%20interesa%20una%20visita%20t%C3%A9cnica%20gratuita"
+     class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.524 5.845L.057 23.938a.5.5 0 0 0 .612.612l6.093-1.467A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.9 9.9 0 0 1-5.04-1.374l-.36-.214-3.733.979.999-3.648-.235-.374A9.86 9.86 0 0 1 2.1 12c0-5.468 4.432-9.9 9.9-9.9 5.467 0 9.9 4.432 9.9 9.9 0 5.467-4.433 9.9-9.9 9.9z"/>
+    </svg>
+  </a>
+
+  <script src="assets/js/main.js" defer></script>
+  <script>
+    'use strict';
+    const burger     = document.getElementById('burgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    function closeMobileMenu() {
+      burger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+    burger.addEventListener('click', () => {
+      const open = burger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(open));
+    });
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

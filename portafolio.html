@@ -329,6 +329,14 @@
       .port-cta__actions .btn-outline-white { justify-content: center; }
     }
   </style>
+  <!-- Google Analytics 4 — reemplazar G-XXXXXXXXXX con tu Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
 </head>
 
 <body>
@@ -342,7 +350,17 @@
         </a>
         <ul class="navbar__links" role="list">
           <li><a href="index.html#inicio">Inicio</a></li>
-          <li><a href="index.html#servicios">Servicios</a></li>
+          <li class="navbar__has-dropdown">
+          <a href="index.html#servicios">Servicios</a>
+          <ul class="navbar__dropdown" role="list">
+            <li><a href="cocinas-a-medida-costa-rica.html">Cocinas a medida</a></li>
+            <li><a href="banos-personalizados-costa-rica.html">Baños personalizados</a></li>
+            <li><a href="closets-a-medida-costa-rica.html">Clósets a medida</a></li>
+            <li><a href="escaleras-flotantes-costa-rica.html">Escaleras flotantes</a></li>
+            <li><a href="puertas-de-madera-costa-rica.html">Puertas de madera</a></li>
+            <li><a href="diseno-de-interiores-alajuela.html">Diseño en Alajuela</a></li>
+          </ul>
+        </li>
           <li><a href="portafolio.html" aria-current="page" style="color:var(--dark)">Proyectos</a></li>
           <li><a href="index.html#proceso">Proceso</a></li>
           <li><a href="index.html#contacto">Contacto</a></li>
@@ -361,6 +379,15 @@
     <a href="portafolio.html"      onclick="closeMobileMenu()">Proyectos</a>
     <a href="index.html#proceso"   onclick="closeMobileMenu()">Proceso</a>
     <a href="index.html#contacto"  onclick="closeMobileMenu()">Contacto</a>
+  
+    <div class="navbar__mobile-group">
+      <span class="navbar__mobile-label">Servicios</span>
+      <a href="cocinas-a-medida-costa-rica.html" onclick="closeMobileMenu()">Cocinas</a>
+      <a href="banos-personalizados-costa-rica.html" onclick="closeMobileMenu()">Baños</a>
+      <a href="closets-a-medida-costa-rica.html" onclick="closeMobileMenu()">Clósets</a>
+      <a href="escaleras-flotantes-costa-rica.html" onclick="closeMobileMenu()">Escaleras</a>
+      <a href="puertas-de-madera-costa-rica.html" onclick="closeMobileMenu()">Puertas</a>
+    </div>
   </div>
 
 
@@ -381,6 +408,8 @@
       <button class="port-filter"        data-cat="cocina" aria-pressed="false">Cocina</button>
       <button class="port-filter"        data-cat="bano"   aria-pressed="false">Baño</button>
       <button class="port-filter"        data-cat="hogar"  aria-pressed="false">Hogar</button>
+      <button class="port-filter"        data-cat="closet" aria-pressed="false">Clóset</button>
+      <button class="port-filter"        data-cat="escalera" aria-pressed="false">Escalera</button>
     </div>
   </div>
 
@@ -468,7 +497,7 @@
         </article>
 
         <!-- ── ESCALERA ── -->
-        <article class="port-card" data-cat="hogar">
+        <article class="port-card" data-cat="escalera">
           <a href="proyecto.html?id=escalera-ilios" class="port-card__full-link" aria-label="Ver proyecto: Donde el espacio sube de nivel."></a>
           <img src="Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Escalera/Escalera.png"
                alt="Escalera flotante — Modern Space" loading="lazy" />
@@ -483,7 +512,7 @@
         </article>
 
         <!-- ── CLOSET ── -->
-        <article class="port-card" data-cat="hogar">
+        <article class="port-card" data-cat="closet">
           <a href="proyecto.html?id=closet-poas" class="port-card__full-link" aria-label="Ver proyecto: Orden que también se ve bien."></a>
           <img src="Modern%20Space/Pagina%20Web/Fotos%20de%20proyectos/Closet%201/Closet%20in.png"
                alt="Clóset a medida — Modern Space" loading="lazy" />
@@ -664,7 +693,8 @@
         if (show) { card.removeAttribute('hidden'); visible++; }
         else       { card.setAttribute('hidden', ''); }
       });
-      const label = cat === 'todos' ? 'proyectos' : (cat === 'bano' ? 'baños' : cat === 'cocina' ? 'cocinas' : 'proyectos de hogar');
+      const labels = { todos:'proyectos', cocina:'cocinas', bano:'baños', hogar:'proyectos de hogar', closet:'clósets', escalera:'escaleras' };
+      const label = labels[cat] || 'proyectos';
       countEl.textContent = visible + ' ' + label;
       emptyEl.style.display = visible === 0 ? 'block' : 'none';
     }

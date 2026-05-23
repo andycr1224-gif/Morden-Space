@@ -246,6 +246,65 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .navbar.scrolled .navbar__cta { color: var(--dark) !important; border-color: var(--dark); }
 .navbar.scrolled .navbar__cta:hover { background: var(--dark) !important; color: var(--white) !important; }
 
+/* ── Dropdown Servicios ── */
+.navbar__has-dropdown { position: relative; }
+.navbar__has-dropdown > a::after { content: ' ▾'; font-size: 9px; opacity: 0.7; }
+.navbar__dropdown {
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--white);
+  min-width: 230px;
+  padding: 10px 0;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.14);
+  border-top: 2px solid var(--gold);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.22s, visibility 0.22s, transform 0.22s var(--ease-out);
+  z-index: 200;
+  list-style: none;
+}
+.navbar__has-dropdown:hover .navbar__dropdown,
+.navbar__has-dropdown:focus-within .navbar__dropdown {
+  opacity: 1; visibility: visible; pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+.navbar__dropdown li a {
+  display: block;
+  padding: 11px 22px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--charcoal) !important;
+  transition: color 0.2s, padding-left 0.2s;
+}
+.navbar__dropdown li a::after { display: none !important; }
+.navbar__dropdown li a:hover { color: var(--gold) !important; padding-left: 28px; }
+
+/* ── Mobile menu service group ── */
+.navbar__mobile-group { text-align: center; }
+.navbar__mobile-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.navbar__mobile-group a {
+  font-family: var(--font-sans) !important;
+  font-style: normal !important;
+  font-size: 1rem !important;
+  color: rgba(255,255,255,0.75) !important;
+  padding: 6px 0;
+}
+
 .navbar__burger {
   display: none;
   flex-direction: column;
