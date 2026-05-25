@@ -186,14 +186,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* Logo — ambas versiones */
 .navbar__logo img {
-  height: 56px;
+  height: 140px;
+  max-height: 140px;
   width: auto;
+  object-fit: contain;
   transition: height 0.3s var(--ease-out);
 }
 .navbar__logo .logo-white { display: block; }  /* visible sobre hero oscuro */
 .navbar__logo .logo-dark  { display: none; }   /* oculto hasta scroll */
 
-.navbar.scrolled .navbar__logo img { height: 48px; }
+.navbar.scrolled .navbar__logo img { height: 140px; max-height: 140px; }
 .navbar.scrolled .logo-white { display: none; }
 .navbar.scrolled .logo-dark  { display: block; }
 
