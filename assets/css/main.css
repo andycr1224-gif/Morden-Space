@@ -172,7 +172,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .navbar.scrolled {
   background: rgba(255, 255, 255, 0.93);
-  padding: 18px 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
   box-shadow: 0 1px 32px rgba(0,0,0,0.09);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
